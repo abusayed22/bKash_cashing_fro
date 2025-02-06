@@ -16,10 +16,10 @@ const Page = (props) => {
       <div className="container max-w-md mx-auto">
         {/* <div className="max-w-md mx-auto"> */}
           {/* Header */}
-          <h2 className="text-2xl font-bold mb-4">Today</h2>
+          {/* <h2 className="text-2xl font-bold mb-4">Today</h2>
 
-          {/* Date Selector */}
-          <WeekDay />
+          Date Selector
+          <WeekDay /> */}
 
           
 

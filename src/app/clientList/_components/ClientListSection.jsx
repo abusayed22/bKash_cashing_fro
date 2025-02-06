@@ -16,6 +16,14 @@ const ClientListSection = ({ }) => {
         limit: 10,
     });
 
+    const [today, setToday] = useState("");
+
+    useEffect(() => {
+      const date = new Date();
+      const formattedDate = date.toLocaleDateString(); // Format as needed (e.g., MM/DD/YYYY)
+      setToday(formattedDate);
+    }, []);
+
 
     // Fetch data on component mount
     useEffect(() => {
@@ -50,9 +58,11 @@ const ClientListSection = ({ }) => {
                         <p className="text-xs">Total Clients</p>
                         <p className="text-lg font-bold">{pagination.totalClients}</p>
                     </div>
-                    <div>
-                        <p className="text-xs">NOT VISITED</p>
-                        <p className="text-lg font-bold">121</p>
+                    <div className="flex flex-col items-center">
+                        <p className="text-xs">Today</p>
+                        <p className="text-lg font-bold">
+                            {today}
+                        </p>
                     </div>
                 </div>
             </Card>
