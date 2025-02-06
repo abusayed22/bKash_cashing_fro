@@ -1,8 +1,8 @@
 'use client'
 
 import { useEffect, useState } from 'react';
+import { PatchClients } from '../../clientList/_actions/handler';
 import { SendMoneyAdd } from '../_actions/handler';
-import { PatchClients } from '@/app/clientList/_actions/handler';
 
 
 

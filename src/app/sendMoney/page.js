@@ -1,6 +1,6 @@
-import DashboardLayout from "@/layouts/DashboardLayout";
 import React from "react"
 import SendMoneyForm from "./_components/SendMoneyForm";
+import DashboardLayout from "@/src/layouts/DashboardLayout";
 
 const Page = (props) => {
   return (

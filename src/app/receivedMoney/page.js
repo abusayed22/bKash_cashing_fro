@@ -1,4 +1,4 @@
-import DashboardLayout from "@/layouts/DashboardLayout";
+import DashboardLayout from "@/src/layouts/DashboardLayout";
 import React from "react"
 import ReceivedMoneyForm from "./_components/ReceivedMoneyForm";
 

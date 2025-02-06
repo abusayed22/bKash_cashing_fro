@@ -1,6 +1,6 @@
 
 import React from "react"
-import DashboardLayout from "@/layouts/DashboardLayout";
+import DashboardLayout from "@/src/layouts/DashboardLayout";
 import { Card } from "@/components/ui/card";
 import { CheckCircle, AlertCircle, FileText } from "lucide-react";
 import ClientCard from "./_components/ClientCard";

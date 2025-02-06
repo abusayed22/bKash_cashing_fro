@@ -14,8 +14,9 @@ import { GetAllHistories } from "../_actions/handler";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import moment from "moment";
-import { formatDateTime } from "@/lib/moment";
+// import { formatDateTime } from "@/lib/moment";
 import Image from "next/image";
+import { formatDateTime } from "@/src/lib/moment";
 
 const HistoryCard = () => {
     const [histories, setHistory] = useState([]);
