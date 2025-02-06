@@ -3,12 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev --turbopack", 
    "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "postinstall": "apt-get update && apt-get install -y bash"
-  },
+    "lint": "next lint"
+   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
     "@radix-ui/react-avatar": "^1.1.2",
