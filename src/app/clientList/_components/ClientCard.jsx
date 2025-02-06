@@ -1,7 +1,6 @@
 'use client'
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-// import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card } from "@/components/ui/card";
+import { Avatar,AvatarFallback, AvatarImage } from "@/src/components/ui/avatar";
 import { AlertCircle, CheckCircle, FileText } from "lucide-react";
 import React from "react"
 

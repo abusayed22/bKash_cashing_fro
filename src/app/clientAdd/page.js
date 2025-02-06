@@ -1,6 +1,6 @@
-import DashboardLayout from "@/layouts/DashboardLayout";
 import React from "react"
 import ClientAddForm from "./_components/ClientAddForm";
+import DashboardLayout from "@/src/layouts/DashboardLayout";
 
 const Page = (props) => {
   

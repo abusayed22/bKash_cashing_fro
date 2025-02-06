@@ -1,4 +1,3 @@
-// import { Path } from "@/utility/enviroment";
 
 import { Path } from "@/src/utility/enviroment";
 
