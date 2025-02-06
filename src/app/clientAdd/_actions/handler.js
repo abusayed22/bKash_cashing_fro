@@ -19,27 +19,3 @@ export const ClientAdd = async(dataObj) => {
         console.log(error.message)
     }
 }
-
-
-// export const AddCustomer = async (dataObj) => {
-  
-//     try {
-//       // const cookiesStore = cookies();
-//       // const token = cookiesStore.get("token")?.value;
-//       const response = await fetch(`${Path}/customers`, {
-//         cache: "no-store",
-//             method: "POST",
-//             headers: {
-//               // "Accept": "application/json",
-//               "Content-Type": "application/json",
-//               // "Authorization": `Bearer ${token}`,
-//             },
-//             body:JSON.stringify(dataObj)
-//       });
-  
-//       const data = await response.json();
-//       return data
-//     } catch (error) {
-//       console.log(error.message);
-//     }
-// }
