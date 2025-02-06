@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "npx next build",
+   "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "apt-get update && apt-get install -y bash"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
