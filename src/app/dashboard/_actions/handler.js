@@ -1,10 +1,10 @@
-import { PATH } from "@/utility/enviroment";
+import { Path } from "@/utility/enviroment";
 
 
 
 export const GetDashboardData = async () => {
     try {
-        const response = await fetch(`${PATH}/dashboard`, {
+        const response = await fetch(`${Path}/dashboard`, {
               method: "GET",
               cache: "no-store", // You may not need "no-store" unless it's necessary
               headers: {

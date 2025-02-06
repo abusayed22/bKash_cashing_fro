@@ -3,6 +3,7 @@ import React from "react"
 import { Card } from "@/components/ui/card";
 import { ShoppingCart, Users, DollarSign, BarChart3, Send, HandCoins } from "lucide-react";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import Image from "next/image";
 
 const dashboardStats = [
   {
@@ -44,7 +45,7 @@ const DashboardCard = ({ data }) => {
           className="flex items-center justify-between bg-slate-200 p-6 shadow-md rounded-lg transition-transform transform hover:scale-105 hover:shadow-xl"
         >
           {/* Icon */}
-          <div className={`p-4 rounded-lg `}>{<Send size={40} />}</div>
+          <div className={`p-4 rounded-lg `}>{<Send size={32} />}</div>
 
           {/* Text Info */}
           <div className="text-right">
@@ -57,7 +58,7 @@ const DashboardCard = ({ data }) => {
           className="flex items-center justify-between bg-lime-100 p-6 shadow-md rounded-lg transition-transform transform hover:scale-105 hover:shadow-xl"
         >
           {/* Icon */}
-          <div className={`p-4 rounded-lg `}>{<HandCoins size={40} />}</div>
+          <div className={`p-4 rounded-lg `}>{<HandCoins size={32} />}</div>
 
           {/* Text Info */}
           <div className="text-right">
@@ -72,7 +73,7 @@ const DashboardCard = ({ data }) => {
           {/* Icon */}
           <div className={`p-4 rounded-lg `}>
             <Avatar>
-              <AvatarImage src="/icons/BKash-Logo.wine.png" />
+              <Image width={32} height={32} src={'/bkash.svg'} alt='bkash'/>
             </Avatar>
           </div>
 
@@ -89,7 +90,7 @@ const DashboardCard = ({ data }) => {
           {/* Icon */}
           <div className={`p-4 rounded-lg `}>
             <Avatar>
-              <AvatarImage src="/icons/BKash-Logo.wine.png" />
+            <Image width={32} height={32} src={'/bkash.svg'} alt='bkash'/>
             </Avatar>
           </div>
 
@@ -106,7 +107,7 @@ const DashboardCard = ({ data }) => {
           {/* Icon */}
           <div className={`p-4 rounded-lg `}>
             <Avatar>
-              <AvatarImage src="/icons/Nagad-Logo.wine.png" />
+              <Image width={32} height={32} src={'/nagad.svg'} alt='bkash'/>
             </Avatar>
           </div>
 
@@ -123,7 +124,7 @@ const DashboardCard = ({ data }) => {
           {/* Icon */}
           <div className={`p-4 rounded-lg `}>
             <Avatar>
-              <AvatarImage src="/icons/Nagad-Logo.wine.png" />
+            <Image width={32} height={32} src={'/nagad.svg'} alt='bkash'/>
             </Avatar>
           </div>
 

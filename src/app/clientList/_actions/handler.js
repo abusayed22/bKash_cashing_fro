@@ -1,10 +1,10 @@
-import { PATH } from "@/utility/enviroment";
+import { Path } from "@/utility/enviroment";
 
 
 // client list with id and user name
 export const PatchClients = async () => {
   try {
-    const response = await fetch(`${PATH}/client`, {
+    const response = await fetch(`${Path}/client`, {
       method: "PATCH",
       cache: "no-store", // You may not need "no-store" unless it's necessary
       headers: {
@@ -29,7 +29,7 @@ export const PatchClients = async () => {
 // get all clients list DATA 
 export const GetAllClients = async (page, limit) => {
   try {
-    const response = await fetch(`${PATH}/client?page=${page}&limit=${limit}`, {
+    const response = await fetch(`${Path}/client?page=${page}&limit=${limit}`, {
       method: "GET",
       cache: "no-store", // You may not need "no-store" unless it's necessary
       headers: {

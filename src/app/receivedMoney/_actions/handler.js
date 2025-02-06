@@ -1,11 +1,11 @@
-import { PATH } from "@/utility/enviroment";
+import { Path } from "@/utility/enviroment";
 
 
 
 
 export async function ReceivedMoneyAdd(dataObj) {
     try {
-        const response = await fetch(`${PATH}/receivedmoney`, {
+        const response = await fetch(`${Path}/receivedmoney`, {
             cache: 'no-cache',
             method: 'POST',
             headers: {

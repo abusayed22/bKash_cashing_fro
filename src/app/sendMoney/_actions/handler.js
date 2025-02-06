@@ -1,11 +1,11 @@
-import { PATH } from "@/utility/enviroment";
+import { Path } from "@/utility/enviroment";
 
 
 
 export const SendMoneyAdd = async (dataObj) => {
     try {
-        const response = await fetch(`${PATH}/sendmoney`, {
-            cache:'no-cache',
+        const response = await fetch(`${Path}/sendmoney`, {
+            cache:'no-store',
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -1,13 +1,14 @@
-import { PATH } from "@/utility/enviroment";
+import { Path } from "@/utility/enviroment";
 
 
 
 // get all clients list DATA 
 export const GetAllHistories = async (page, limit) => {
+    console.log(limit)
   try {
-    const response = await fetch(`${PATH}/history?page=${page}&limit=${limit}`, {
-      method: "PATCH",
-      cache: "no-store", // You may not need "no-store" unless it's necessary
+    const response = await fetch(`${Path}/history?page=${page}&limit=${limit}`, {
+      method: "GET",
+      cache: "no-store",
       headers: {
         "Accept": "application/json", // Ensure proper headers
         "Content-Type": "application/json",

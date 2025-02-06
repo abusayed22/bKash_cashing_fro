@@ -1,10 +1,10 @@
 'use server';
 
-import { PATH } from "@/utility/enviroment";
+import { Path } from "@/utility/enviroment";
 
 export const ClientAdd = async(dataObj) => {
     try {
-        const response = await fetch(`${PATH}/client`,{
+        const response = await fetch(`${Path}/client`,{
             cache:'no-cache',
             method:'POST',
             headers:{

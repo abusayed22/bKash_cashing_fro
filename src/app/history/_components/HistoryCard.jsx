@@ -13,6 +13,9 @@ import {
 import { GetAllHistories } from "../_actions/handler";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import moment from "moment";
+import { formatDateTime } from "@/lib/moment";
+import Image from "next/image";
 
 const HistoryCard = () => {
     const [histories, setHistory] = useState([]);
@@ -51,17 +54,23 @@ const HistoryCard = () => {
 
 
     return (
-        <div className="container">
+        <div className="container"> 
             {
                 loading ? (
                     <p className="mt-4 text-sm text-center text-gray-500 dark:text-gray-400">Loading...</p>
                 ) : (
+
+                   
+
+
+
+
                     <Table>
                         <TableCaption>{histories?.length === 0 ? 'No History' : 'A list of your recent invoices.'}</TableCaption>
                         {histories?.length !== 0 && (
                             <>
                                 <TableHeader>
-                                    <TableRow>
+                                    <TableRow >
                                         <TableHead className="w-[100px]">Name</TableHead>
                                         <TableHead>Status</TableHead>
                                         <TableHead>Method</TableHead>
@@ -69,18 +78,21 @@ const HistoryCard = () => {
                                     </TableRow>
                                 </TableHeader>
                                 {histories?.map(item => (
-                                    <TableBody key={item?.id}>
-                                        <TableRow>
-                                            <TableCell className="font-medium capitalize">{item?.client.fullname}</TableCell>
-                                            <TableCell className={item.status === 'Send' ? 'text-amber-400' : 'text-green-400'}>{item?.status}</TableCell>
+                                    <TableBody key={item?.id} className="h-[20px]">
+                                        <TableRow className='!border'>
+                                            <TableCell className=" py-1 px-4 font-medium capitalize">{item?.client.fullname}</TableCell>
+                                            <TableCell className="py-1 px-4" ><p className={item.status === 'Send' ? 'text-amber-400 font-bold' : 'text-green-400 font-bold'}>{item?.status}</p> <p className='text-[8px] text-slate-600'>{formatDateTime(item?.createdAt)}</p></TableCell>
 
 
-                                            <TableCell>{item?.method === 'b' && (<Avatar>
-                                                <AvatarImage src="/icons/BKash-Logo.wine.png" />
+                                            <TableCell className="py-1">{item?.method === 'b' && (<Avatar>
+                                                {/* <AvatarImage src="/icons/bkash.svg" /> */}
+                                                <Image width={24} height={24} src={'/bkash.svg'} />
+                                                {/* <AvatarImage  src="/bkash.svg" /> */}
                                             </Avatar>)}{item?.method === 'n' && (<Avatar>
-                                                <AvatarImage src="/icons/Nagad-Logo.wine.png" />
+                                                {/* <AvatarImage  src="/nagad.svg" /> */}
+                                                <Image width={24} height={24} src={'/nagad.svg'} />
                                             </Avatar>)}</TableCell>
-                                            <TableCell className="text-right"> ৳ {item?.amount}</TableCell>
+                                            <TableCell className="text-right py-1 px-4"> ৳ {item?.amount}</TableCell>
                                         </TableRow>
                                     </TableBody>
                                 ))}
