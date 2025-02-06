@@ -20,6 +20,6 @@ export const GetDashboardData = async () => {
             const data = await response.json();
             return data;
     } catch (error) {
-        
+        console.log('Dashboard data fetching error:', error)
     }
 }
