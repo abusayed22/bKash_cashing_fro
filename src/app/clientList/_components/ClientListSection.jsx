@@ -13,7 +13,7 @@ const ClientListSection = ({ }) => {
         totalClients: 0,
         totalPages: 1,
         currentPage: 1,
-        limit: 3,
+        limit: 10,
     });
 
 
