@@ -2,7 +2,7 @@
 import React from "react"
 import { Card } from "@/components/ui/card";
 import { ShoppingCart, Users, DollarSign, BarChart3, Send, HandCoins } from "lucide-react";
-import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import { Avatar } from "@/components/ui/avatar";
 import Image from "next/image";
 
 const dashboardStats = [
