@@ -1,7 +1,7 @@
 import React from "react"
-import DashboardLayout from "@/layouts/DashboardLayout";
-import DashboardCard from "./_components/DashboardCard";
 import { GetDashboardData } from "./_actions/handler";
+import DashboardLayout from "@/src/layouts/DashboardLayout";
+import DashboardCard from "./_components/DashboardCard";
 
 const Page = async(props) => {
 

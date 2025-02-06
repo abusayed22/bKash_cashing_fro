@@ -1,6 +1,7 @@
 'use server';
 
-import { Path } from "@/utility/enviroment";
+import { Path } from "@/src/utility/enviroment";
+
 
 export const ClientAdd = async(dataObj) => {
     try {
