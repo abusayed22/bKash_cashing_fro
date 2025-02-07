@@ -33,9 +33,9 @@ const ClientAddForm = (props) => {
         
                 // Validation
                 if (!formData.customerName) newErrors.customerName = 'Customer Name is required';
-                if (!formData.phoneNumber || !/^\d{10}$/.test(formData.phoneNumber)) {
-                    newErrors.phoneNumber = 'Phone number is required and should be 10 digits';
-                }
+                // if (!formData.phoneNumber || !/^\d{10}$/.test(formData.phoneNumber)) {
+                //     newErrors.phoneNumber = 'Phone number is required and should be 10 digits';
+                // }
                 // if (!formData.amount || isNaN(formData.amount) || formData.amount <= 0) {
                 //     newErrors.amount = 'Amount must be a valid number greater than 0';
                 // }
@@ -55,7 +55,7 @@ const ClientAddForm = (props) => {
                         console.log(response)
                         if (response.error) {
                         } else {
-                           
+                           alert('Client add Successfully.')
                           setFormData({ customerName: "", phoneNumber: "", amount: "", address: "", note: "" });
                         }
                         setLoanding(false)
