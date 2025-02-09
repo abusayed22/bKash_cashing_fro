@@ -30,7 +30,9 @@ export async function CreateToken(email, id) {
 
 // token Decoded
 export async function TokenDecoded(token) {
-    // console.log('dec',JWT_SECRET)
+    const JWT_SECRET = 'apps-key-bKash'
+    const JWT_ISSUER="Localhost"
+    const JWT_EXPIRE="1h"
     try {
         const secret = new TextEncoder().encode(JWT_SECRET);
         const decoded = await jwtVerify(token, secret);
