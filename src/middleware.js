@@ -19,5 +19,5 @@ export async function middleware(req) {
 
 // Apply middleware only to certain paths (Optional: improves performance)
 export const config = {
-    matcher: ['/dashboard/:path*', '/clientAdd/:path*', '/clientList/:path*','/history/:path*','/receivedMoney/:path*','/sendMoney/:path*',],
+    // matcher: ['/dashboard/:path*', '/clientAdd/:path*', '/clientList/:path*','/history/:path*','/receivedMoney/:path*','/sendMoney/:path*',],
 };
