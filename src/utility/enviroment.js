@@ -1,4 +1,4 @@
-// 'use server';
+'use server';
 
 
 // export const MAIN_PATH = 'http://192.168.10.135:3001/api';
