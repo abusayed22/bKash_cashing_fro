@@ -1,10 +1,7 @@
 'use server'
 import { PATH } from "@/src/utility/enviroment";
 import { cookies } from "next/headers";
-// import { getCookie } from "cookies-next";
 
-
-// const token = getCookie('accessToken');
 
 export const SendMoneyAdd = async (dataObj) => {
     try {
