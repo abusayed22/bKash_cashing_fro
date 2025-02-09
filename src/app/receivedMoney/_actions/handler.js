@@ -1,16 +1,21 @@
-
-import { Path } from "@/src/utility/enviroment";
+'use server'
+import { PATH } from "@/src/utility/enviroment";
+import { cookies } from "next/headers";
 
 
 
 
 export async function ReceivedMoneyAdd(dataObj) {
     try {
-        const response = await fetch(`${Path}/receivedmoney`, {
+        const cookieStore = await cookies();
+        const token = cookieStore.get('accessToken');
+        const response = await fetch(`${PATH}/receivedmoney`, {
             cache: 'no-cache',
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+                "Accept": "application/json", // Ensure proper headers
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token.value}`
             },
             body: JSON.stringify(dataObj),
         });

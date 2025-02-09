@@ -1,25 +1,46 @@
 'use client'
-import React from "react"
+import React, { useState } from "react"
 import { useForm } from "react-hook-form";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { RegisterPost } from "../_actions/handler";
+import { useRouter } from "next/navigation";
 
 
 const RegisterForm = (props) => {
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
-    const {
-        register,
-        handleSubmit,
-        watch,
-        formState: { errors },
-      } = useForm();
-    
-      const onSubmit = (data) => {
-        console.log("Registration Data:", data);
-        alert("Registration Successful!");
-      };
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = async (data) => {
+    setLoading(true)
+    try {
+      const result = await RegisterPost(data);
+      console.log('response', result.status)
+      if (result.status !== 201) {
+        alert('Login Unsuccessfully. Please try again!')
+        console.log('Login Unsuccessfully. Please try again!');
+        setLoading(false)
+      } else {
+        alert('Register Successfully.');
+        // redirect('/dashboard');
+        router.push('/dashboard')
+        setLoading(false)
+      }
+    } catch (error) {
+      // alert('Login Unsuccessfully. Please try again!')
+      console.log('Login Unsuccessfully. Something wrong!',error.message);
+      setLoading(false)
+    }
+  };
 
   return (
     <div>
@@ -80,10 +101,10 @@ const RegisterForm = (props) => {
               placeholder="Enter your password"
               {...register("password", {
                 required: "Password is required",
-                minLength: {
-                  value: 6,
-                  message: "Password must be at least 6 characters long",
-                },
+                // minLength: {
+                //   value: 6,
+                //   message: "Password must be at least 6 characters long",
+                // },
               })}
               className="w-full mt-1"
             />
@@ -114,12 +135,23 @@ const RegisterForm = (props) => {
           </div>
 
           {/* Submit Button */}
-          <Button
+          {loading ? (<Button
+            disabled={loading}
+            className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-md"
+          >
+            Loading...
+          </Button>) : (<Button
             type="submit"
             className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-md"
           >
             Register
-          </Button>
+          </Button>)}
+          {/* <Button
+            type="submit"
+            className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-md"
+          >
+            Register
+          </Button> */}
         </form>
 
         {/* Already have an account */}

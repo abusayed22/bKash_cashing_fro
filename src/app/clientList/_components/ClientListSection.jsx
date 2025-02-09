@@ -19,9 +19,9 @@ const ClientListSection = ({ }) => {
     const [today, setToday] = useState("");
 
     useEffect(() => {
-      const date = new Date();
-      const formattedDate = date.toLocaleDateString(); // Format as needed (e.g., MM/DD/YYYY)
-      setToday(formattedDate);
+        const date = new Date();
+        const formattedDate = date.toLocaleDateString(); // Format as needed (e.g., MM/DD/YYYY)
+        setToday(formattedDate);
     }, []);
 
 
@@ -30,7 +30,6 @@ const ClientListSection = ({ }) => {
         const fetchData = async () => {
             try {
                 const res = await GetAllClients(pagination.currentPage, pagination.limit); // Call your API endpoint
-
                 if (res.status === "ok") {
                     setClients(res.data); // Set fetched clients data to state
                     setPagination(res.pagination)
@@ -68,44 +67,56 @@ const ClientListSection = ({ }) => {
             </Card>
 
             {/* Client List */}
-            <div className="space-y-4 container max-w-md mx-auto">
-                {/* Clients List */}
-                <div>
-                    {clients.map((client) => (
-                        <ClientCard key={client.id} client={client} />
-                    ))}
-                </div>
+            {
+                loading ? (
+                    <p className="mt-4 text-sm text-center text-gray-500 dark:text-gray-400">Loading...</p>
+                ) : (
+                    <div className="space-y-4 container max-w-md mx-auto">
+                        {/* Clients List */}
+                        <div>
+                            {clients.map((client) => (
+                                <ClientCard key={client.id} client={client} />
+                            ))}
+                        </div>
 
-                {/* Pagination Controls using shadcn */}
-                <Pagination>
-                    <PaginationContent>
-                        <PaginationItem>
-                            <PaginationPrevious
-                                onClick={() => setPagination({ ...pagination, currentPage: pagination.currentPage - 1 })}
-                                disabled={pagination.currentPage === 1}
-                            />
-                        </PaginationItem>
+                        {/* Pagination Controls using shadcn */}
+                        {
+                            clients?.length === 0 ? (
+                                <p className="mt-4 text-sm text-center text-gray-500 dark:text-gray-400">No client!</p>
+                            ) : (
+                                <Pagination>
+                                    <PaginationContent>
+                                        <PaginationItem>
+                                            <PaginationPrevious
+                                                onClick={() => setPagination({ ...pagination, currentPage: pagination.currentPage - 1 })}
+                                                disabled={pagination.currentPage === 1}
+                                            />
+                                        </PaginationItem>
 
-                        {Array.from({ length: pagination.totalPages }, (_, i) => (
-                            <PaginationItem key={i}>
-                                <PaginationLink
-                                    isActive={pagination.currentPage === i + 1}
-                                    onClick={() => setPagination({ ...pagination, currentPage: i + 1 })}
-                                >
-                                    {i + 1}
-                                </PaginationLink>
-                            </PaginationItem>
-                        ))}
+                                        {Array.from({ length: pagination.totalPages }, (_, i) => (
+                                            <PaginationItem key={i}>
+                                                <PaginationLink
+                                                    isActive={pagination.currentPage === i + 1}
+                                                    onClick={() => setPagination({ ...pagination, currentPage: i + 1 })}
+                                                >
+                                                    {i + 1}
+                                                </PaginationLink>
+                                            </PaginationItem>
+                                        ))}
 
-                        <PaginationItem>
-                            <PaginationNext
-                                onClick={() => setPagination({ ...pagination, currentPage: pagination.currentPage + 1 })}
-                                disabled={pagination.currentPage === pagination.totalPages}
-                            />
-                        </PaginationItem>
-                    </PaginationContent>
-                </Pagination>
-            </div>
+                                        <PaginationItem>
+                                            <PaginationNext
+                                                onClick={() => setPagination({ ...pagination, currentPage: pagination.currentPage + 1 })}
+                                                disabled={pagination.currentPage === pagination.totalPages}
+                                            />
+                                        </PaginationItem>
+                                    </PaginationContent>
+                                </Pagination>
+                            )
+                        }
+                    </div>
+                )
+            }
         </div>
     )
 };

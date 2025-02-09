@@ -1,17 +1,23 @@
-import { Path } from "@/src/utility/enviroment";
+'use server'
+import { PATH } from "@/src/utility/enviroment";
+// import { getCookie } from "cookies-next";
+import { cookies } from 'next/headers'
 
 
 
 // get all clients list DATA 
 export const GetAllHistories = async (page, limit) => {
-    console.log(limit)
   try {
-    const response = await fetch(`${Path}/history?page=${page}&limit=${limit}`, {
+    const cookieStore = await cookies();
+    const token = cookieStore.get('accessToken');
+    // console.log(token)
+    const response = await fetch(`${PATH}/history?page=${page}&limit=${limit}`, {
       method: "GET",
       cache: "no-store",
       headers: {
         "Accept": "application/json", // Ensure proper headers
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${token.value}`
       },
     });
 

@@ -1,7 +1,7 @@
 'use client'
 import React from "react"
 import { Card } from "@/components/ui/card";
-import { ShoppingCart, Users, DollarSign, BarChart3, Send, HandCoins } from "lucide-react";
+import { ShoppingCart, Users, DollarSign, BarChart3, Send, HandCoins, CreditCard } from "lucide-react";
 import { Avatar } from "@/components/ui/avatar";
 import Image from "next/image";
 
@@ -34,7 +34,7 @@ const dashboardStats = [
 
 
 const DashboardCard = ({ data }) => {
-  const { send, received, sendbKash, receivedbKash, sendNagad, receivedNagad } = data || {}
+  const { send, received, sendBank, receivedBank,sendbKash, receivedbKash, sendNagad, receivedNagad } = data || {}
 
   return (
     <div>
@@ -68,12 +68,46 @@ const DashboardCard = ({ data }) => {
         </Card>
         <Card
           // key={index}
+          className="flex items-center justify-between p-6 shadow-md bg-blue-200 rounded-lg transition-transform transform hover:scale-105 hover:shadow-xl"
+        >
+          {/* Icon */}
+          <div className={`p-4 rounded-lg `}>
+            {/* <Avatar> */}
+            <div className={`p-4 rounded-lg `}>{<CreditCard size={32} />}</div>
+            {/* </Avatar> */}
+          </div>
+
+          {/* Text Info */}
+          <div className="text-right">
+            <p className="text-gray-500 text-sm">Today Total Bank Send</p>
+            <p className="text-2xl font-bold">{sendBank ||0} ৳</p>
+          </div>
+        </Card>
+        <Card
+          // key={index}
+          className="flex items-center justify-between p-6 shadow-md bg-blue-200 rounded-lg transition-transform transform hover:scale-105 hover:shadow-xl"
+        >
+          {/* Icon */}
+          <div className={`p-4 rounded-lg `}>
+            {/* <Avatar> */}
+            <div className={`p-4 rounded-lg `}>{<CreditCard size={32} />}</div>
+            {/* </Avatar> */}
+          </div>
+
+          {/* Text Info */}
+          <div className="text-right">
+            <p className="text-gray-500 text-sm">Today Total Bank Received</p>
+            <p className="text-2xl font-bold">{receivedBank ||0} ৳</p>
+          </div>
+        </Card>
+        <Card
+          // key={index}
           className="flex items-center justify-between p-6 shadow-md bg-red-200 rounded-lg transition-transform transform hover:scale-105 hover:shadow-xl"
         >
           {/* Icon */}
           <div className={`p-4 rounded-lg `}>
             <Avatar>
-              <Image width={32} height={32} src={'/bkash.svg'} alt='bkash'/>
+              <Image width={32} height={32} src={'/bkash.svg'} alt='bkash' />
             </Avatar>
           </div>
 

@@ -158,6 +158,7 @@ const ReceivedMoneyForm = (props) => {
                         <option value="">Select Payment Method</option>
                         <option value="n">Nagad</option>
                         <option value="b">bKash</option>
+                        <option value="bank">Bank</option>
                     </select>
                     {errors.paymentMethod && <div className="text-red-500 text-xs mt-1">{errors.paymentMethod}</div>}
                 </div>

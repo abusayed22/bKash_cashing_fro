@@ -5,17 +5,39 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { LoginPost } from "../_actions/handler";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const LoginForm = (props) => {
+  const [loading,setLoading] = useState(false);
     const {
         register,
         handleSubmit,
         formState: { errors },
       } = useForm();
+
+      const router = useRouter();
     
-      const onSubmit = (data) => {
-        console.log("Login Data:", data);
-        alert("Login Successful!");
+      const onSubmit = async(data) => {
+        setLoading(true)
+        try {
+          const result = await LoginPost(data);
+          // console.log("aasdfasdfasd",result.status)
+          if(result.status !== 200 ) {
+            alert('Login Unsuccessfully. Please try again!')
+            setLoading(false);
+            console.log(result);
+          } else {
+            alert('Login Successfully.');
+            setLoading(false);
+            router.push('/dashboard')
+          }
+        } catch (error) {
+          alert('Login Unsuccessfully. Please try again!')
+            console.log('Login Unsuccessfully. Something wrong!',error.message);
+            setLoading(false)
+        }
       };
   return (
     <div>
@@ -57,10 +79,10 @@ const LoginForm = (props) => {
               placeholder="Enter your password"
               {...register("password", {
                 required: "Password is required",
-                minLength: {
-                  value: 6,
-                  message: "Password must be at least 6 characters long",
-                },
+                // minLength: {
+                //   value: 6,
+                //   message: "Password must be at least 6 characters long",
+                // },
               })}
               className="w-full mt-1"
             />
@@ -70,12 +92,21 @@ const LoginForm = (props) => {
           </div>
 
           {/* Submit Button */}
-          <Button
-            type="submit"
-            className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-md"
-          >
-            Login
-          </Button>
+          {
+            loading ? (<Button
+              disabled={loading}
+              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-md"
+            >
+              Loading...
+            </Button>): (
+              <Button
+              type="submit"
+              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-md"
+            >
+              Login
+            </Button>
+            )
+          }
         </form>
 
         {/* Forgot Password & Signup Links */}
@@ -84,7 +115,7 @@ const LoginForm = (props) => {
             Forgot password?
           </a>{" "}
           |{" "}
-          <a href="#" className="hover:underline text-indigo-600">
+          <a href="/auth/register" className="hover:underline text-indigo-600">
             Create an account
           </a>
         </div>

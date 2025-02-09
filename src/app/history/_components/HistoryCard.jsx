@@ -35,7 +35,6 @@ const HistoryCard = () => {
         const fetchData = async () => {
             try {
                 const res = await GetAllHistories(pagination?.currentPage, pagination?.limit); // Call your API endpoint
-                console.log(res);
                 if (res.status === "ok") {
                     setHistory(res?.data); // Set fetched clients data to state
                     setPagination(res?.pagination)
@@ -87,11 +86,11 @@ const HistoryCard = () => {
 
                                             <TableCell className="py-1">{item?.method === 'b' && (<Avatar>
                                                 {/* <AvatarImage src="/icons/bkash.svg" /> */}
-                                                <Image width={24} height={24} src={'/bkash.svg'} />
+                                                <Image width={24} height={24} src={'/bkash.svg'} alt="bKash" />
                                                 {/* <AvatarImage  src="/bkash.svg" /> */}
                                             </Avatar>)}{item?.method === 'n' && (<Avatar>
                                                 {/* <AvatarImage  src="/nagad.svg" /> */}
-                                                <Image width={24} height={24} src={'/nagad.svg'} />
+                                                <Image width={24} height={24} src={'/nagad.svg'} alt="nagad"/>
                                             </Avatar>)}</TableCell>
                                             <TableCell className="text-right py-1 px-4"> ৳ {item?.amount}</TableCell>
                                         </TableRow>

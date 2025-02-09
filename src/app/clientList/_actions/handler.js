@@ -1,16 +1,22 @@
+'use server'
 
-import { Path } from "@/src/utility/enviroment";
+import { PATH } from "@/src/utility/enviroment";
+import { cookies } from "next/headers";
 
 
-// client list with id and user name
+
 export const PatchClients = async () => {
   try {
-    const response = await fetch(`${Path}/client`, {
+    const cookieStore = await cookies();
+    const token = cookieStore.get('accessToken');
+    // console.log('token ', token)
+    const response = await fetch(`${PATH}/client`, {
       method: "PATCH",
       cache: "no-store", // You may not need "no-store" unless it's necessary
       headers: {
-        "Accept": "application/json", // Ensure proper headers
-        "Content-Type": "application/json",
+        "Accept": "application/json",
+        'Content-Type': 'application/json',
+        "Authorization": `Bearer ${token.value}`
       },
     });
 
@@ -30,12 +36,16 @@ export const PatchClients = async () => {
 // get all clients list DATA 
 export const GetAllClients = async (page, limit) => {
   try {
-    const response = await fetch(`${Path}/client?page=${page}&limit=${limit}`, {
+    const cookieStore = await cookies();
+    const token = cookieStore.get('accessToken');
+    // console.log('token ', token)
+    const response = await fetch(`${PATH}/client?page=${page}&limit=${limit}`, {
       method: "GET",
       cache: "no-store", // You may not need "no-store" unless it's necessary
       headers: {
-        "Accept": "application/json", // Ensure proper headers
-        "Content-Type": "application/json",
+        "Accept": "application/json",
+        'Content-Type': 'application/json',
+        "Authorization": `Bearer ${token.value}`
       },
     });
 
