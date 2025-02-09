@@ -2,8 +2,7 @@
 import { NextResponse } from 'next/server';
 
 
-// Your secret key (should be in `.env.local` and NOT hardcoded)
-const JWT_SECRET = 'apps-key-bkash'; 
+
 
 export async function middleware(req) {
    
@@ -19,5 +18,5 @@ export async function middleware(req) {
 
 // Apply middleware only to certain paths (Optional: improves performance)
 export const config = {
-    // matcher: ['/dashboard/:path*', '/clientAdd/:path*', '/clientList/:path*','/history/:path*','/receivedMoney/:path*','/sendMoney/:path*',],
+    matcher: ['/dashboard/:path*', '/clientAdd/:path*', '/clientList/:path*','/history/:path*','/receivedMoney/:path*','/sendMoney/:path*',],
 };
