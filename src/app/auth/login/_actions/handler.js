@@ -14,7 +14,9 @@ export const LoginPost = async (dataObj) => {
             body: JSON.stringify(dataObj)
         })
         const data = await response.json();
+        console.log('json',data)
         const token = data.data
+        console.log(token)
         
         if (token) {
             // Set cookie with expiration of 1 hour

@@ -157,7 +157,7 @@ const RegisterForm = (props) => {
         {/* Already have an account */}
         <div className="mt-4 text-center text-sm text-gray-600">
           Already have an account?{" "}
-          <a href="#" className="hover:underline text-indigo-600">
+          <a href="/auth/login" className="hover:underline text-indigo-600">
             Login
           </a>
         </div>
