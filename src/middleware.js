@@ -7,12 +7,12 @@ const JWT_SECRET = 'apps-key-bkash';
 
 export async function middleware(req) {
    
-    // const token = req.cookies.get('accessToken'); 
+    const token = req.cookies.get('accessToken'); 
     
 
-    // if(!token) {
-    //     return NextResponse.redirect(new URL('/auth/login',req.url))
-    // }
+    if(!token) {
+        return NextResponse.redirect(new URL('/auth/login',req.url))
+    }
 
     
 }
