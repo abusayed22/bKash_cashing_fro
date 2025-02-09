@@ -10,7 +10,7 @@ export const GetDashboardData = async () => {
       const cookieStore = await cookies();
     const token = cookieStore.get('accessToken');
     // console.log(token)
-        const response = await fetch(`${MAIN_PATH}/dashboard`, {
+        const response = await fetch(`https://b-kash-cashing-backend.vercel.app/api/dashboard`, {
               method: "GET",
               cache: "no-store", // You may not need "no-store" unless it's necessary
               headers:{
