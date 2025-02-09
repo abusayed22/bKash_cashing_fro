@@ -1,11 +1,11 @@
 
-import { MAIN_PATH } from "@/src/utility/enviroment";
+// import { MAIN_PATH } from "@/src/utility/enviroment";
 
 
 
 export const LoginPost = async (dataObj) => {
     try {
-        const response = await fetch(`${MAIN_PATH}/auth/login`, {
+        const response = await fetch(`${process.env.MAIN_PATH}/auth/login`, {
             cache: 'no-cache',
             method: 'POST',
             headers: {

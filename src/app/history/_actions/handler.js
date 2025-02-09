@@ -1,5 +1,5 @@
 'use server'
-import { MAIN_PATH } from "@/src/utility/enviroment";
+// import { MAIN_PATH } from "@/src/utility/enviroment";
 // import { getCookie } from "cookies-next";
 import { cookies } from 'next/headers'
 
@@ -11,7 +11,7 @@ export const GetAllHistories = async (page, limit) => {
     const cookieStore = await cookies();
     const token = cookieStore.get('accessToken');
     // console.log(token)
-    const response = await fetch(`${MAIN_PATH}/history?page=${page}&limit=${limit}`, {
+    const response = await fetch(`${process.env.MAIN_PATH}/history?page=${page}&limit=${limit}`, {
       method: "GET",
       cache: "no-store",
       headers: {
