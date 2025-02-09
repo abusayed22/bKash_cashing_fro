@@ -1,5 +1,5 @@
 'use server'
-import { PATH } from "@/src/utility/enviroment";
+import { MAIN_PATH } from "@/src/utility/enviroment";
 import { cookies } from "next/headers";
 
 
@@ -9,7 +9,7 @@ export const SendMoneyAdd = async (dataObj) => {
         const token = cookieStore.get('accessToken');
         // console.log(token)
 
-        const response = await fetch(`${PATH}/sendmoney`, {
+        const response = await fetch(`${MAIN_PATH}/sendmoney`, {
             cache: 'no-store',
             method: 'POST',
             headers: {

@@ -1,6 +1,6 @@
 'use server'
 
-import { PATH } from "@/src/utility/enviroment";
+import { MAIN_PATH } from "@/src/utility/enviroment";
 import { cookies } from "next/headers";
 
 
@@ -10,7 +10,7 @@ export const GetDashboardData = async () => {
       const cookieStore = await cookies();
     const token = cookieStore.get('accessToken');
     // console.log(token)
-        const response = await fetch(`${PATH}/dashboard`, {
+        const response = await fetch(`${MAIN_PATH}/dashboard`, {
               method: "GET",
               cache: "no-store", // You may not need "no-store" unless it's necessary
               headers:{

@@ -1,6 +1,6 @@
 'use server'
 
-import { PATH } from "@/src/utility/enviroment";
+import { MAIN_PATH } from "@/src/utility/enviroment";
 import { cookies } from "next/headers";
 
 
@@ -10,7 +10,7 @@ export const PatchClients = async () => {
     const cookieStore = await cookies();
     const token = cookieStore.get('accessToken');
     // console.log('token ', token)
-    const response = await fetch(`${PATH}/client`, {
+    const response = await fetch(`${MAIN_PATH}/client`, {
       method: "PATCH",
       cache: "no-store", // You may not need "no-store" unless it's necessary
       headers: {
@@ -39,7 +39,7 @@ export const GetAllClients = async (page, limit) => {
     const cookieStore = await cookies();
     const token = cookieStore.get('accessToken');
     // console.log('token ', token)
-    const response = await fetch(`${PATH}/client?page=${page}&limit=${limit}`, {
+    const response = await fetch(`${MAIN_PATH}/client?page=${page}&limit=${limit}`, {
       method: "GET",
       cache: "no-store", // You may not need "no-store" unless it's necessary
       headers: {

@@ -1,13 +1,13 @@
 // 'use server';
 
-import { PATH } from "@/src/utility/enviroment";
+import { MAIN_PATH } from "@/src/utility/enviroment";
 
 
 
 
 export const RegisterPost = async(dataObj) => {
     try {
-        const response = await fetch(`${PATH}/auth/register`,{
+        const response = await fetch(`${MAIN_PATH}/auth/register`,{
             cache:'no-cache',
             method:'POST',
             headers:{

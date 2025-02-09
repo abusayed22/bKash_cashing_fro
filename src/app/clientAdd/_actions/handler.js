@@ -1,7 +1,7 @@
 'use server';
 
 
-import { PATH } from "@/src/utility/enviroment";
+import { MAIN_PATH } from "@/src/utility/enviroment";
 // import { getCookie } from "cookies-next";
 import { cookies } from "next/headers";
 
@@ -13,7 +13,7 @@ export const ClientAdd = async (dataObj) => {
         const cookieStore = await cookies();
         const token = cookieStore.get('accessToken');
         // console.log(token)
-        const response = await fetch(`${PATH}/client`, {
+        const response = await fetch(`${MAIN_PATH}/client`, {
             cache: 'no-cache',
             method: 'POST',
             headers: {

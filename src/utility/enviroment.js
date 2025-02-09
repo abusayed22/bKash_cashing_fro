@@ -5,5 +5,5 @@
 // export const PATH = 'http://localhost:3001';
 
 // vercel backend api link
-export const PATH = 'https://b-kash-cashing-backend.vercel.app/api';
+export const MAIN_PATH = 'https://b-kash-cashing-backend.vercel.app/api';
 
