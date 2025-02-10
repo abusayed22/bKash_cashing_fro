@@ -1,11 +1,11 @@
 import { jwtVerify, SignJWT } from "jose";
-import "@/envConfig"
+// import "@/envConfig"
 
-const env = process.env
+// const env = process.env
 
 const JWT_SECRET = 'apps-key-bKash'
-    const JWT_ISSUER="Localhost"
-    const JWT_EXPIRE="1h"
+const JWT_ISSUER = "Localhost"
+const JWT_EXPIRE = "1h"
 
 
 // create token 
@@ -31,8 +31,8 @@ export async function CreateToken(email, id) {
 // token Decoded
 export async function TokenDecoded(token) {
     const JWT_SECRET = 'apps-key-bKash'
-    const JWT_ISSUER="Localhost"
-    const JWT_EXPIRE="1h"
+    const JWT_ISSUER = "Localhost"
+    const JWT_EXPIRE = "1h"
     try {
         const secret = new TextEncoder().encode(JWT_SECRET);
         const decoded = await jwtVerify(token, secret);
