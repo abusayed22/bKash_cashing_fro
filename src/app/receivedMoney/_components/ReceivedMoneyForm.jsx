@@ -20,6 +20,7 @@ const ReceivedMoneyForm = (props) => {
                 }
             } catch (error) {
                 console.error("Failed to fetch clients:", error);
+                alert("Failed to fetch clients:", error)
             }
         };
         fetchClients();
