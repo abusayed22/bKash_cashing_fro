@@ -1,4 +1,4 @@
-'use client';
+// 'use client';
 // import { MAIN_PATH } from "@/src/utility/enviroment";
 import { TokenDecoded } from "@/src/utility/tokenHelper";
 import { deleteCookie, getCookie } from "cookies-next";
