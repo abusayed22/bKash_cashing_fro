@@ -1,7 +1,7 @@
 'use client'
 
 // import { MAIN_PATH } from "@/src/utility/enviroment";
-import { cookies } from "next/headers";
+// import { cookies } from "next/headers";
 import { getCookie } from 'cookies-next';
 
 
