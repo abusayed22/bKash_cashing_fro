@@ -9,7 +9,7 @@ export const PatchClients = async () => {
   try {
     const cookieStore = await cookies();
     const token = cookieStore.get('accessToken');
-    // console.log('token ', token)
+    console.log('token ', token)
     const response = await fetch(`${MAIN_PATH}/client`, {
       method: "PATCH",
       cache: "no-store", // You may not need "no-store" unless it's necessary
@@ -19,13 +19,14 @@ export const PatchClients = async () => {
         "Authorization": `Bearer ${token.value}`
       },
     });
-    console.log(response)
+    console.log('res',response)
 
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
     const data = await response.json();
+    console.log('json',data)
     return data;
   } catch (error) {
     console.log("Error fetching clients:", error.message);
