@@ -1,23 +1,23 @@
-'use client'
+'use server'
 
-// import { MAIN_PATH } from "@/src/utility/enviroment";
-// import { cookies } from "next/headers";
-import { getCookie } from 'cookies-next';
+import { MAIN_PATH } from "@/src/utility/enviroment";
+import { cookies } from "next/headers";
+// import { getCookie } from 'cookies-next';
 
 
 export const GetDashboardData = async () => {
     try {
-    //   const cookieStore = await cookies();
-    // const token = cookieStore.get('accessToken');
-    const token = getCookie('accessToken');
+      const cookieStore = await cookies();
+    const token = cookieStore.get('accessToken');
+    // const token = getCookie('accessToken');
     console.log('token',token)
-        const response = await fetch(`${process.env.MAIN_PATH}/dashboard`, {
+        const response = await fetch(`${MAIN_PATH}/dashboard`, {
               method: "GET",
               cache: "no-store", // You may not need "no-store" unless it's necessary
               headers:{
                 "Accept": "application/json",
                 'Content-Type':'application/json',
-                "Authorization": `Bearer ${token.value}`
+                "Authorization": `Bearer ${token?.value}`
             },
             });
         
