@@ -1,4 +1,4 @@
-// 'use client';
+'use server';
 // import { MAIN_PATH } from "@/src/utility/enviroment";
 import { TokenDecoded } from "@/src/utility/tokenHelper";
 import { deleteCookie, getCookie } from "cookies-next";
@@ -6,8 +6,9 @@ import { deleteCookie, getCookie } from "cookies-next";
 
 export const LogoutAction = async () => {
     try {
-        // const {} = TokenDecoded();
-        const token = getCookie('accessToken');
+        const cookieStore = await cookies();
+                const token = cookieStore.get('accessToken');
+        // const token = getCookie('accessToken');
         // console.log(token);
 
         const decodedToken = await TokenDecoded(token);
