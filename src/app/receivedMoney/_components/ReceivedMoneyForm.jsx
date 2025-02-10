@@ -5,11 +5,16 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { ReceivedMoneyAdd } from "../_actions/handler";
 import { PatchClients } from "../../clientList/_actions/handler";
+import { useToast } from "@/src/hooks/use-toast";
+import { ToastProvider } from "@/src/components/ui/toast";
+import { Toaster } from "@/src/components/ui/toaster";
+
 
 const ReceivedMoneyForm = (props) => {
     const [loading, setLoading] = useState(false);
     const [clients, setClients] = useState();
 
+    const {toast} = useToast();
     // clients fatching
     useEffect(() => {
         const fetchClients = async () => {
@@ -20,7 +25,10 @@ const ReceivedMoneyForm = (props) => {
                 }
             } catch (error) {
                 console.error("Failed to fetch clients:", error);
-                alert("Failed to fetch clients:", error)
+                toast({
+                    variant: 'destructive',
+                    description: `Failed to fetch clients: ${error.message}`,
+                });
             }
         };
         fetchClients();
@@ -85,12 +93,15 @@ const ReceivedMoneyForm = (props) => {
                 }
                 const response = await ReceivedMoneyAdd(dataObj);
                 if (response.status === 'ok') {
-                    alert('Received Money Added Successfully!')
+                    toast({
+                        variant: 'success',
+                        description: `Received Money Added Successfully.`,
+                    });
                     setLoading(false)
                 }
                 if (response.error) {
                 } else {
-                    setFormData({ customerName: "", phoneNumber: "", amount: "",paymentMethod: "", address: "", note: "" });
+                    setFormData({ customerName: "", phoneNumber: "", amount: "", paymentMethod: "", address: "", note: "" });
                 }
                 setLoading(false)
             } catch (error) {
@@ -106,6 +117,8 @@ const ReceivedMoneyForm = (props) => {
 
 
     return (
+        <ToastProvider>
+            <Toaster />
         <div className="container mx-auto p-4">
             <h2 className="text-2xl font-bold mb-6">Receive Money Form</h2>
             <form onSubmit={handleSubmit}>
@@ -182,6 +195,7 @@ const ReceivedMoneyForm = (props) => {
                 }
             </form>
         </div>
+        </ToastProvider>
     )
 };
 

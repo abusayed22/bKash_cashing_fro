@@ -7,11 +7,15 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RegisterPost } from "../_actions/handler";
 import { useRouter } from "next/navigation";
+import { useToast } from "@/src/hooks/use-toast";
+import { ToastProvider } from "@/src/components/ui/toast";
+import { Toaster } from "@/src/components/ui/toaster";
 
 
 const RegisterForm = (props) => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const {toast} = useToast()
 
   const {
     register,
@@ -26,24 +30,34 @@ const RegisterForm = (props) => {
       const result = await RegisterPost(data);
       console.log('response', result.status)
       if (result.status !== 201) {
-        alert('Login Unsuccessfully. Please try again!')
-        console.log('Login Unsuccessfully. Please try again!');
+        toast({
+          variant: 'destructive',
+          description: `Register Unsuccessfully!.Please try again!`,
+        });
+        console.log('Register Unsuccessfully. Please try again!');
         setLoading(false)
       } else {
-        alert('Register Successfully.');
+        toast({
+          variant: 'success',
+          description: `Register Successfully. `,
+        });
         // redirect('/dashboard');
         router.push('/dashboard')
         setLoading(false)
       }
     } catch (error) {
-      // alert('Login Unsuccessfully. Please try again!')
-      console.log('Login Unsuccessfully. Something wrong!',error.message);
+      toast({
+        variant: 'destructive',
+        description: `Register Unsuccessfully. Please try again! ${error.message}`,
+      });
+      console.log('Login Unsuccessfully. Something wrong!', error.message);
       setLoading(false)
     }
   };
 
   return (
-    <div>
+    <ToastProvider>
+      <Toaster />
       <Card className="p-6 max-w-md w-full shadow-lg rounded-lg bg-white">
         <h2 className="text-2xl font-bold text-center mb-4">Register</h2>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -162,7 +176,7 @@ const RegisterForm = (props) => {
           </a>
         </div>
       </Card>
-    </div>
+    </ToastProvider>
   )
 };
 

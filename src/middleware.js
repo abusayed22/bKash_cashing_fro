@@ -14,7 +14,8 @@ export async function middleware(req) {
         return NextResponse.redirect(new URL('/auth/login',req.url))
     }
 
-    
+    console.log('hello middleware');
+    NextResponse.next()
 }
 
 // Apply middleware only to certain paths (Optional: improves performance)

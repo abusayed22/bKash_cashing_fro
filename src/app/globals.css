@@ -36,3 +36,11 @@ body {
   width: 60% !important;
   height: 60% !important;
 }
+
+
+.toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+}

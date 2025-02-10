@@ -2,6 +2,9 @@
 import React, { useState } from "react"
 import { ClientAdd } from "../_actions/handler";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/src/hooks/use-toast";
+import { ToastProvider } from "@/src/components/ui/toast";
+import { Toaster } from "@/src/components/ui/toaster";
 
 const ClientAddForm = (props) => {
     const [loading,setLoanding] = useState(false)
@@ -24,6 +27,8 @@ const ClientAddForm = (props) => {
                     [name]: value,
                 });
             };
+
+            const {toast} = useToast();
         
             const handleSubmit = async(e) => {
                 setLoanding(true)
@@ -55,14 +60,20 @@ const ClientAddForm = (props) => {
                         console.log(response)
                         if (response.error) {
                         } else {
-                           alert('Client add Successfully.')
+                           toast({
+                            variant: 'success',
+                            description: `Client add Successfully`,
+                        });
                           setFormData({ customerName: "", phoneNumber: "", amount: "", address: "", note: "" });
                         }
                         setLoanding(false)
                       } catch (error) {
                         setLoanding(false)
                         console.error("Submission failed:", error);
-                        toast.error("Failed to submit the form."); // Failure Toast
+                        toast({
+                            variant: 'destructive',
+                            description: `Client Add Failed!. Please try again! ${error.message}`,
+                        });
                       }
                 } else {
                     setErrors(newErrors);
@@ -74,7 +85,8 @@ const ClientAddForm = (props) => {
             
 
   return (
-    <div>
+    <ToastProvider>
+        <Toaster />
       <div className="container mx-auto p-4">
             <h2 className="text-2xl font-bold mb-6">Client Add Form</h2>
             <form onSubmit={handleSubmit}>
@@ -133,7 +145,7 @@ const ClientAddForm = (props) => {
             </form>
   
         </div>
-    </div>
+    </ToastProvider>
   )
 };
 

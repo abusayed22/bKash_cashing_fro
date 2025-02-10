@@ -3,6 +3,9 @@
 import { useEffect, useState } from 'react';
 import { PatchClients } from '../../clientList/_actions/handler';
 import { SendMoneyAdd } from '../_actions/handler';
+import { useToast } from '@/src/hooks/use-toast';
+import { ToastProvider } from '@/src/components/ui/toast';
+import { Toaster } from '@/src/components/ui/toaster';
 
 
 
@@ -30,6 +33,8 @@ const SendMoneyForm = (props) => {
         //     // Cleanup logic here (e.g., canceling requests)
         // };
     }, []);
+
+    const {toast} = useToast();
 
 
     const [formData, setFormData] = useState({
@@ -86,7 +91,10 @@ const SendMoneyForm = (props) => {
                 }
                 const response = await SendMoneyAdd(dataObj);
                 if (response.status === 'ok') {
-                    alert('Send Money Successfully Added!')
+                    toast({
+                        variant: 'success',
+                        description: `Send Money Successfully Added.`,
+                    });
                 }
                 if (response.error) {
                 } else {
@@ -105,6 +113,8 @@ const SendMoneyForm = (props) => {
 
 
     return (
+        <ToastProvider>
+        <Toaster />
         <div className="container mx-auto p-4">
             <h2 className="text-2xl font-bold mb-6">Send Money Form</h2>
             <form onSubmit={handleSubmit}>
@@ -195,6 +205,7 @@ const SendMoneyForm = (props) => {
                 }
             </form>
         </div>
+        </ToastProvider>
     )
 }
 

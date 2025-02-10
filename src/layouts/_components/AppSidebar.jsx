@@ -21,7 +21,8 @@ import Image from "next/image";
 
 
 const AppSidebar = (props) => {
-  const [isOpen, setIsOpen] = useState(false); // For toggling the sidebar visibility
+  const [isOpen, setIsOpen] = useState(false); 
+  const [loading,setLoading] = useState(false)
 
   // Menu items.
   const items = [
@@ -65,7 +66,8 @@ const AppSidebar = (props) => {
 
 
   const handleLogout = async () => {
-    await LogoutAction()
+    const res = await LogoutAction();
+    console.log(res)
   };
 
   return (

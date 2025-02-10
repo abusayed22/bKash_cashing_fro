@@ -1,12 +1,10 @@
 
-// 'use client'
 import { MAIN_PATH } from "@/src/utility/enviroment";
 
 
 
 export const LoginPost = async (dataObj) => {
     try {
-        
         const response = await fetch(`${MAIN_PATH}/auth/login`, {
             cache: 'no-cache',
             method: 'POST',
