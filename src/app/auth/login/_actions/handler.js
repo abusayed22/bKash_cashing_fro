@@ -1,11 +1,13 @@
 
-// import { MAIN_PATH } from "@/src/utility/enviroment";
+'use client'
+import { MAIN_PATH } from "@/src/utility/enviroment";
 
 
 
 export const LoginPost = async (dataObj) => {
     try {
-        const response = await fetch(`${process.env.MAIN_PATH}/auth/login`, {
+        
+        const response = await fetch(`${MAIN_PATH}/auth/login`, {
             cache: 'no-cache',
             method: 'POST',
             headers: {
@@ -14,7 +16,7 @@ export const LoginPost = async (dataObj) => {
             body: JSON.stringify(dataObj)
         })
         const data = await response.json();
-        console.log('json',data)
+        // console.log('json',data)
         const token = data.data
         console.log(token)
         
