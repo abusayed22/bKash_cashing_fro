@@ -1,5 +1,5 @@
 
-'use client'
+// 'use client'
 import { MAIN_PATH } from "@/src/utility/enviroment";
 
 
