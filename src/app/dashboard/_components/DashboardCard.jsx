@@ -22,22 +22,23 @@ const getDashboardFromSessionStorage = () => {
 };
 
 
-const DashboardCard = () => {
+const DashboardCard = ({data}) => {
   const [loading, setLoading] = useState(true);
 
   const [dashboard, setDashboard] = useState(null);
   
   
   useEffect(() => {
-    const data = getDashboardFromSessionStorage();
+    const sessionData = getDashboardFromSessionStorage();
     console.log(data)
-    if (data) {
+    if (sessionData) {
       setDashboard(data);  // Set the data in state
       setLoading(false);  // Set loading to false after data is fetched
     } else {
+      setDashboard(data)
       setLoading(false);  // Set loading to false if no data is found
     }
-  }, []);
+  }, [data]);
 
   return (
     <div>

@@ -5,13 +5,11 @@ import DashboardCard from "./_components/DashboardCard";
 
 const Page = async(props) => {
 
-  // console.log('data fetching start')
-  // const dashboardData = await GetDashboardData();
-  // console.log('data fetching end')
+  const dashboardData = await GetDashboardData();
   return (
     <DashboardLayout>
       <div className="container max-w-md lg:max-w-full mx-auto">
-        <DashboardCard />
+        <DashboardCard data={dashboardData}/>
       </div>
     </DashboardLayout>
   )
