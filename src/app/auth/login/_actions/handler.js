@@ -15,7 +15,9 @@ export const LoginPost = async (dataObj) => {
         })
         const data = await response.json();
         const token = data.data
-        
+        const dashoard = data.dashboard
+        console.log(data)
+
         if (token) {
             // Set cookie with expiration of 1 hour
             const expirationDate = new Date();
@@ -25,11 +27,23 @@ export const LoginPost = async (dataObj) => {
             document.cookie = `accessToken=${token}; expires=${expirationDate.toUTCString()}; path=/; secure; samesite=lax;`;
         }
 
+
+        // Store dashboard data in sessionStorage
+        storeDashboardInSessionStorage(dashoard)
+
         return response
     } catch (error) {
         console.log(error.message)
     }
-}
+};
+
+
+
+const storeDashboardInSessionStorage = (dashboardData) => {
+    console.log(dashboardData)
+    const data = JSON.stringify(dashboardData);  // Convert object to JSON string
+    sessionStorage.setItem('dashboard', data);
+};
 
 
 

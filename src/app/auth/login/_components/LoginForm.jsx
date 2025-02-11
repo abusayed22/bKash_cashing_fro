@@ -28,6 +28,7 @@ const LoginForm = (props) => {
     setLoading(true)
     try {
       const result = await LoginPost(data);
+
       if (result.status !== 200) {
         toast({
           variant: 'destructive',
