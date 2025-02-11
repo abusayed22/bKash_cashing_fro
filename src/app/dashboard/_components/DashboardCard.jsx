@@ -32,10 +32,11 @@ const DashboardCard = ({data}) => {
     const sessionData = getDashboardFromSessionStorage();
     console.log(data)
     if (sessionData) {
-      setDashboard(data);  // Set the data in state
+      setDashboard(sessionData);  // Set the data in state
       setLoading(false);  // Set loading to false after data is fetched
     } else {
-      setDashboard(data)
+      // setLoading(false);  // Set loading to false if no data is found
+      setDashboard(data?.data)
       setLoading(false);  // Set loading to false if no data is found
     }
   }, [data]);
@@ -59,7 +60,7 @@ const DashboardCard = ({data}) => {
           {/* Text Info */}
           <div className="text-right">
             <p className="text-gray-500 text-sm">Today Total Send</p>
-            <p className="text-2xl font-bold">{dashboard?.send || 0} ৳</p>
+            <p className="text-2xl font-bold">{dashboard?.send } ৳</p>
           </div>
         </Card>
         <Card

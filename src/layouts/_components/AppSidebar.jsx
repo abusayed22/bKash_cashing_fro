@@ -30,16 +30,25 @@ const AppSidebar = (props) => {
       title: "Dashboard",
       url: "/dashboard",
       icon: Home,
+      onClick: () => {
+        sessionStorage.removeItem('dashboard');  // Clear dashboard data from sessionStorage
+      }
     },
     {
       title: "Send Money",
       url: "/sendMoney",
       icon: Send,
+      onClick: () => {
+        sessionStorage.removeItem('dashboard');  // Clear dashboard data from sessionStorage
+      }
     },
     {
       title: "Received Money",
       url: "/receivedMoney",
-      icon: HandCoins
+      icon: HandCoins,
+      onClick: () => {
+        sessionStorage.removeItem('dashboard');  // Clear dashboard data from sessionStorage
+      }
     },
     {
       title: "History",
@@ -82,7 +91,7 @@ const AppSidebar = (props) => {
                 {items.map((item) => (
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton asChild>
-                      <a href={item.url}>
+                      <a href={item.url} onClick={item.onClick}>
                         <item.icon />
                         <span>{item.title}</span>
                       </a>

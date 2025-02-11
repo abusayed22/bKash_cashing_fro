@@ -15,8 +15,8 @@ export const LoginPost = async (dataObj) => {
         })
         const data = await response.json();
         const token = data.data
-        const dashoard = data.dashboard
-        console.log(data)
+        const dashoard = data?.dashboard
+       
 
         if (token) {
             // Set cookie with expiration of 1 hour
