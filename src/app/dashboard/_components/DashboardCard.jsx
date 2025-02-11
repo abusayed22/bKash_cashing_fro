@@ -1,55 +1,30 @@
 'use client'
 import React, { useEffect, useState } from "react"
 import { Card } from "@/components/ui/card";
-import { ShoppingCart, Users, DollarSign, BarChart3, Send, HandCoins, CreditCard } from "lucide-react";
+import { Send, HandCoins, CreditCard } from "lucide-react";
 import { Avatar } from "@/components/ui/avatar";
 import Image from "next/image";
 
-const dashboardStats = [
-  {
-    title: "Total Sales",
-    value: "$25,430",
-    icon: <DollarSign className="w-8 h-8 text-green-500" />,
-    bgColor: "bg-green-100",
-  },
-  {
-    title: "New Customers",
-    value: "1,248",
-    icon: <Users className="w-8 h-8 text-blue-500" />,
-    bgColor: "bg-blue-100",
-  },
-  {
-    title: "Orders",
-    value: "652",
-    icon: <ShoppingCart className="w-8 h-8 text-purple-500" />,
-    bgColor: "bg-purple-100",
-  },
-  {
-    title: "Revenue",
-    value: "$12,980",
-    icon: <BarChart3 className="w-8 h-8 text-orange-500" />,
-    bgColor: "bg-orange-100",
-  },
-];
+
 
 
 const DashboardCard = ({ data }) => {
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
   const { send, received, sendBank, receivedBank, sendbKash, receivedbKash, sendNagad, receivedNagad } = data || {}
 
-  useEffect(() => {
-    if (data) {
-      setLoading(false)
-    }
-  }, [data])
+  // useEffect(() => {
+  //   if (data) {
+  //     setLoading(false)
+  //   }
+  // }, [data])
 
   return (
     <div>
 
-      {
-        loading ? (
+      {/* { */}
+        {/* loading ? (
           <p className="mt-4 text-sm text-center text-gray-500 dark:text-gray-400">Loading...</p>
-        ) : (
+        ) : ( */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-4">
             {/* {dashboardStats.map((stat, index) => ( */}
             <Card
@@ -182,8 +157,8 @@ const DashboardCard = ({ data }) => {
             </Card>
             {/* ))} */}
           </div>
-        )
-      }
+         {/* ) */}
+      {/* } */}
     </div>
   )
 };
