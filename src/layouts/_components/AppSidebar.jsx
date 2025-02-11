@@ -21,8 +21,8 @@ import Image from "next/image";
 
 
 const AppSidebar = (props) => {
-  const [isOpen, setIsOpen] = useState(false); 
-  const [loading,setLoading] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+  const [loading, setLoading] = useState(false)
 
   // Menu items.
   const items = [
@@ -66,8 +66,7 @@ const AppSidebar = (props) => {
 
 
   const handleLogout = async () => {
-    const res = await LogoutAction();
-    console.log(res)
+    await LogoutAction();
   };
 
   return (
@@ -90,14 +89,11 @@ const AppSidebar = (props) => {
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 ))}
-                <SidebarMenuItem onClick={handleLogout}>
-                  <SidebarMenuButton asChild>
-                    <a>
-                      <LogOut />
-                      <span>Logout</span>
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
+
+                <SidebarMenuButton onClick={handleLogout}>
+                  <LogOut />
+                  <span>Logout</span>
+                </SidebarMenuButton>
               </SidebarMenu>
             </SidebarGroupContent>
           </SidebarGroup>
