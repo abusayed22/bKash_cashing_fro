@@ -42,7 +42,7 @@ const LoginForm = (props) => {
           variant: 'success',
           description: 'Login Successfully.',
         });
-        router.push('/dashboard'); // Perform the redirect immediately
+        router.push('/clientList'); // Perform the redirect immediately
 
       }
 
