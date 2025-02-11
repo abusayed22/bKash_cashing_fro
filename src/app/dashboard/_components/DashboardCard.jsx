@@ -25,22 +25,26 @@ const getDashboardFromSessionStorage = () => {
 const DashboardCard = ({data}) => {
   console.log('dashboard loaded')
   const [loading, setLoading] = useState(true);
-
   const [dashboard, setDashboard] = useState(null);
-  
-  
+
   useEffect(() => {
     const sessionData = getDashboardFromSessionStorage();
-    console.log(data)
+    console.log('dashboard loaded IN useEffect');
+
+    // Check if session data is present and if it is different from the current data
     if (sessionData) {
-      setDashboard(sessionData);  // Set the data in state
-      setLoading(false);  // Set loading to false after data is fetched
+      if (sessionData !== dashboard) {
+        setDashboard(sessionData);  // Set session data to state if it differs
+        setLoading(false);  // Set loading to false after data is fetched
+      }
     } else {
-      // setLoading(false);  // Set loading to false if no data is found
-      setDashboard(data?.data)
-      setLoading(false);  // Set loading to false if no data is found
+      if (data?.data !== dashboard) {
+        setDashboard(data?.data);  // Set data from prop to state if it differs
+        setLoading(false);  // Set loading to false if no data is found
+      }
     }
-  }, [data]);
+  }, [data, dashboard]);
+  
 
   return (
     <div>
