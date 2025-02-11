@@ -2,11 +2,9 @@
 import { NextResponse } from 'next/server';
 
 
-// Your secret key (should be in `.env.local` and NOT hardcoded)
-const JWT_SECRET = 'apps-key-bkash'; 
 
 export async function middleware(req) {
-   
+   console.log('middleware')
     const token = req.cookies.get('accessToken'); 
     
 
