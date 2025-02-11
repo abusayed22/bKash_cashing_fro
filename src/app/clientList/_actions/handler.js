@@ -37,7 +37,6 @@ export const GetAllClients = async (page, limit) => {
   try {
     const cookieStore = await cookies();
     const token = cookieStore.get('accessToken');
-    console.log('token ', token)
     const response = await fetch(`${MAIN_PATH}/client?page=${page}&limit=${limit}`, {
       method: "GET",
       cache: "no-store", // You may not need "no-store" unless it's necessary
@@ -47,14 +46,12 @@ export const GetAllClients = async (page, limit) => {
         "Authorization": `Bearer ${token.value}`
       },
     });
-    // console.log('res',response)
 
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
     const data = await response.json();
-    console.log('data', data)
     return data;
   } catch (error) {
     console.log("Error fetching clients:", error.message);

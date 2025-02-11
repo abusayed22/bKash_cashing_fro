@@ -14,7 +14,7 @@ const ReceivedMoneyForm = (props) => {
     const [loading, setLoading] = useState(false);
     const [clients, setClients] = useState();
 
-    const {toast} = useToast();
+    const { toast } = useToast();
     // clients fatching
     useEffect(() => {
         const fetchClients = async () => {
@@ -119,82 +119,82 @@ const ReceivedMoneyForm = (props) => {
     return (
         <ToastProvider>
             <Toaster />
-        <div className="container mx-auto p-4">
-            <h2 className="text-2xl font-bold mb-6">Receive Money Form</h2>
-            <form onSubmit={handleSubmit}>
-                {/* Customer Name */}
-                <div className="mb-4">
-                    <label htmlFor="customerName" className="block text-sm font-medium text-gray-700">Customer Name</label>
-                    <select
-                        id="customerName"
-                        name="customerName"
-                        value={formData.customerName}
-                        onChange={handleInputChange}
-                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                    >
-                        <option value="">Select Client</option>
-                        {
-                            clients?.map(client => (
-                                <option key={client.id} value={client.id} className='capitalize'>{client.fullname}</option>
-                            ))
-                        }
-                    </select>
-                    {errors.customerName && <div className="text-red-500 text-xs mt-1">{errors.customerName}</div>}
-                </div>
+            <div className="container mx-auto p-4">
+                <h2 className="text-2xl font-bold mb-6">Receive Money Form</h2>
+                <form onSubmit={handleSubmit}>
+                    {/* Customer Name */}
+                    <div className="mb-4">
+                        <label htmlFor="customerName" className="block text-sm font-medium text-gray-700">Customer Name</label>
+                        <select
+                            id="customerName"
+                            name="customerName"
+                            value={formData.customerName}
+                            onChange={handleInputChange}
+                            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        >
+                            <option value="">Select Client</option>
+                            {
+                                clients?.map(client => (
+                                    <option key={client.id} value={client.id} className='capitalize'>{client.fullname}</option>
+                                ))
+                            }
+                        </select>
+                        {errors.customerName && <div className="text-red-500 text-xs mt-1">{errors.customerName}</div>}
+                    </div>
 
 
 
-                {/* Amount */}
-                <div className="mb-4">
-                    <label htmlFor="amount" className="block text-sm font-medium text-gray-700">Amount</label>
-                    <input
-                        type="number"
-                        id="amount"
-                        name="amount"
-                        value={formData.amount}
-                        onChange={handleInputChange}
-                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                        placeholder="Enter amount"
-                    />
-                    {errors.amount && <div className="text-red-500 text-xs mt-1">{errors.amount}</div>}
-                </div>
+                    {/* Amount */}
+                    <div className="mb-4">
+                        <label htmlFor="amount" className="block text-sm font-medium text-gray-700">Amount</label>
+                        <input
+                            type="number"
+                            id="amount"
+                            name="amount"
+                            value={formData.amount}
+                            onChange={handleInputChange}
+                            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                            placeholder="Enter amount"
+                        />
+                        {errors.amount && <div className="text-red-500 text-xs mt-1">{errors.amount}</div>}
+                    </div>
 
-                {/* Payment Method */}
-                <div className="mb-4">
-                    <label htmlFor="paymentMethod" className="block text-sm font-medium text-gray-700">Payment Method</label>
-                    <select
-                        id="paymentMethod"
-                        name="paymentMethod"
-                        value={formData.paymentMethod}
-                        onChange={handleInputChange}
-                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                    >
-                        <option value="">Select Payment Method</option>
-                        <option value="n">Nagad</option>
-                        <option value="b">bKash</option>
-                        <option value="bank">Bank</option>
-                    </select>
-                    {errors.paymentMethod && <div className="text-red-500 text-xs mt-1">{errors.paymentMethod}</div>}
-                </div>
+                    {/* Payment Method */}
+                    <div className="mb-4">
+                        <label htmlFor="paymentMethod" className="block text-sm font-medium text-gray-700">Payment Method</label>
+                        <select
+                            id="paymentMethod"
+                            name="paymentMethod"
+                            value={formData.paymentMethod}
+                            onChange={handleInputChange}
+                            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        >
+                            <option value="">Select Payment Method</option>
+                            <option value="n">Nagad</option>
+                            <option value="b">bKash</option>
+                            <option value="bank">Bank</option>
+                        </select>
+                        {errors.paymentMethod && <div className="text-red-500 text-xs mt-1">{errors.paymentMethod}</div>}
+                    </div>
 
-                {/* Note */}
-                <div className="mb-4">
-                    <label htmlFor="note" className="block text-sm font-medium text-gray-700">Note</label>
-                    <textarea
-                        id="note"
-                        name="note"
-                        value={formData.note}
-                        onChange={handleInputChange}
-                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                        placeholder="Add a note"
-                    />
-                    {errors.note && <div className="text-red-500 text-xs mt-1">{errors.note}</div>}
-                </div>
-                {
-                    loading ? <button disabled={loading} className="mt-4 w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700">Loading...</button> : <button type="submit" className="mt-4 w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700">Submit</button>
-                }
-            </form>
-        </div>
+                    {/* Note */}
+                    <div className="mb-4">
+                        <label htmlFor="note" className="block text-sm font-medium text-gray-700">Note</label>
+                        <textarea
+                            id="note"
+                            name="note"
+                            value={formData.note}
+                            onChange={handleInputChange}
+                            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                            placeholder="Add a note"
+                        />
+                        {errors.note && <div className="text-red-500 text-xs mt-1">{errors.note}</div>}
+                    </div>
+                    {
+                        loading ? <button disabled={loading} className="mt-4 w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700">Loading...</button> : <button type="submit" className="mt-4 w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700">Submit</button>
+                    }
+                </form>
+            </div>
         </ToastProvider>
     )
 };

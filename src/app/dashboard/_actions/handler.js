@@ -9,7 +9,6 @@ export const GetDashboardData = async () => {
   try {
     const cookieStore = await cookies();
     const token = cookieStore.get('accessToken');
-    // const token = getCookie('accessToken');
     const response = await fetch(`${MAIN_PATH}/dashboard`, {
       method: "GET",
       cache: "no-store", // You may not need "no-store" unless it's necessary

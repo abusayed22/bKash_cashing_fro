@@ -17,6 +17,7 @@ import moment from "moment";
 // import { formatDateTime } from "@/lib/moment";
 import Image from "next/image";
 import { formatDateTime } from "@/src/lib/moment";
+import { CreditCard } from "lucide-react";
 
 const HistoryCard = () => {
     const [histories, setHistory] = useState([]);
@@ -91,7 +92,11 @@ const HistoryCard = () => {
                                             </Avatar>)}{item?.method === 'n' && (<Avatar>
                                                 {/* <AvatarImage  src="/nagad.svg" /> */}
                                                 <Image width={24} height={24} src={'/nagad.svg'} alt="nagad"/>
-                                            </Avatar>)}</TableCell>
+                                            </Avatar>)}{item?.method === 'bank' && (<>
+                                                {/* <AvatarImage  src="/nagad.svg" /> */}
+                                                {/* <Image width={24} height={24} src={'/nagad.svg'} alt="nagad"/> */}
+                                                <CreditCard color="rgb(198 213 248)"/>
+                                            </>)}</TableCell>
                                             <TableCell className="text-right py-1 px-4"> ৳ {item?.amount}</TableCell>
                                         </TableRow>
                                     </TableBody>
