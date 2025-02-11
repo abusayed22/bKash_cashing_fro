@@ -6,6 +6,7 @@ import { deleteCookie, getCookie } from "cookies-next";
 
 export const LogoutAction = async () => {
     try {
+        console.log('logout start')
         const token = getCookie('accessToken');
 
         const decodedToken = await TokenDecoded(token);
@@ -21,7 +22,7 @@ export const LogoutAction = async () => {
 
         if (response.status === 200) {
             deleteCookie('accessToken');
-            window.location.reload()
+            window.location.reload();
         } else {
             const errorData = await response.json();
             console.error(' failed:', errorData.message);

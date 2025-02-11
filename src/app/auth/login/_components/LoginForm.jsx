@@ -27,8 +27,9 @@ const LoginForm = (props) => {
   const onSubmit = async (data) => {
     setLoading(true)
     try {
+      console.log('login start')
       const result = await LoginPost(data);
-
+      console.log('login Response loaded')
       if (result.status !== 200) {
         toast({
           variant: 'destructive',

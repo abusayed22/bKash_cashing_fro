@@ -26,6 +26,7 @@ export const LoginPost = async (dataObj) => {
             // Set cookie with a different SameSite attribute for testing
             document.cookie = `accessToken=${token}; expires=${expirationDate.toUTCString()}; path=/; secure; samesite=lax;`;
         }
+        console.log('token seted')
 
 
         // Store dashboard data in sessionStorage

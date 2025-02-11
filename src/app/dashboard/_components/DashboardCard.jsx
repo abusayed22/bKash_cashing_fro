@@ -23,7 +23,7 @@ const getDashboardFromSessionStorage = () => {
 
 
 const DashboardCard = ({data}) => {
-  console.log('dashboard loading')
+  console.log('dashboard loaded')
   const [loading, setLoading] = useState(true);
 
   const [dashboard, setDashboard] = useState(null);
