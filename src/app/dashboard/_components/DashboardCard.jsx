@@ -24,7 +24,8 @@ const getDashboardFromSessionStorage = () => {
 
 
   const DashboardCard = ({ data }) => {
-    const {send,received,sendBank,receivedBank,receivedbKash,sendbKash,sendNagad ,receivedNagad} = data || {};
+    console.log(data)
+    const {sendbKash,sendNagad,sendBank,send,receivedbKash,receivedNagad,receivedBank,received} = data.data || {};
 
     console.log('dashboard loaded')
     const [loading, setLoading] = useState(true);
