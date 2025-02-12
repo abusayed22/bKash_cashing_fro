@@ -17,6 +17,7 @@ export const LoginPost = async (dataObj) => {
         const loginData = await response.json();
         const token = loginData?.data
         // const dashoard = data?.dashboard
+        console.log(loginData)
        
 
         if (token) {
