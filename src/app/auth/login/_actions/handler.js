@@ -14,8 +14,9 @@ export const LoginPost = async (dataObj) => {
             },
             body: JSON.stringify(dataObj)
         })
-        // console.log(response)
+        console.log('res',response)
         const loginData = await response.json();
+        console.log('log', loginData)
         // const token = data.data
         // const dashoard = data?.dashboard
        
