@@ -4,6 +4,7 @@ import DashboardLayout from "@/src/layouts/DashboardLayout";
 import DashboardCard from "./_components/DashboardCard";
 
 const Page = async(props) => {
+  console.log('dashboard page')
 
   const dashboardData = await GetDashboardData();
   return (
