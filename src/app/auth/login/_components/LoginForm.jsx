@@ -41,7 +41,7 @@ const LoginForm = (props) => {
       console.log(response)
       // handleTokenSet(loginData);
 
-      if (response.status !== 200) {
+      if (response?.status !== 200) {
         toast({
           variant: 'destructive',
           description: 'Login Unsuccessfully. Please try again!',
