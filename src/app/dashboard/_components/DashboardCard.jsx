@@ -24,7 +24,6 @@ const getDashboardFromSessionStorage = () => {
 
 
   const DashboardCard = ({ data }) => {
-    console.log(data)
     const {sendbKash,sendNagad,sendBank,send,receivedbKash,receivedNagad,receivedBank,received} = data.data || {};
 
     console.log('dashboard loaded')

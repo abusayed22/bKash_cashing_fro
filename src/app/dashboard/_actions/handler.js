@@ -18,6 +18,7 @@ export const GetDashboardData = async () => {
         "Authorization": `Bearer ${token?.value}`
       },
     });
+    console.log(response)
 
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
