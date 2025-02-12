@@ -38,6 +38,7 @@ const LoginForm = (props) => {
       const res = await LoginPost(data);
       const jsonData = res?.loginData;
       const response = res?.response;
+      console.log('res',res)
       console.log(response)
       // handleTokenSet(loginData);
 
