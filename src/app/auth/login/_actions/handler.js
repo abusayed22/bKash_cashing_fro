@@ -5,6 +5,7 @@ import { MAIN_PATH } from "@/src/utility/enviroment";
 
 export const LoginPost = async (dataObj) => {
     try {
+
         const response = await fetch(`${MAIN_PATH}/auth/login`, {
             cache: 'no-cache',
             method: 'POST',
@@ -13,26 +14,27 @@ export const LoginPost = async (dataObj) => {
             },
             body: JSON.stringify(dataObj)
         })
-        const data = await response.json();
-        const token = data.data
-        const dashoard = data?.dashboard
+        // console.log(response)
+        const loginData = await response.json();
+        // const token = data.data
+        // const dashoard = data?.dashboard
        
 
-        if (token) {
-            // Set cookie with expiration of 1 hour
-            const expirationDate = new Date();
-            expirationDate.setSeconds(expirationDate.getSeconds() + 3600);  // Add 3600 seconds (1 hour)
+        // if (token) {
+        //     // Set cookie with expiration of 1 hour
+        //     const expirationDate = new Date();
+        //     expirationDate.setSeconds(expirationDate.getSeconds() + 3600);  // Add 3600 seconds (1 hour)
 
-            // Set cookie with a different SameSite attribute for testing
-            document.cookie = `accessToken=${token}; expires=${expirationDate.toUTCString()}; path=/; secure; samesite=lax;`;
-        }
-        console.log('token seted')
+        //     // Set cookie with a different SameSite attribute for testing
+        //     document.cookie = `accessToken=${token}; expires=${expirationDate.toUTCString()}; path=/; secure; samesite=lax;`;
+        // }
+        // console.log('token seted')
 
 
         // Store dashboard data in sessionStorage
-        storeDashboardInSessionStorage(dashoard)
+        // storeDashboardInSessionStorage(dashoard)
 
-        return response
+        return {response,loginData}
     } catch (error) {
         console.log(error.message)
     }
@@ -40,7 +42,7 @@ export const LoginPost = async (dataObj) => {
 
 
 
-const storeDashboardInSessionStorage = (dashboardData) => {
+export const storeDashboardInSessionStorage = (dashboardData) => {
     console.log(dashboardData)
     const data = JSON.stringify(dashboardData);  // Convert object to JSON string
     sessionStorage.setItem('dashboard', data);

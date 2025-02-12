@@ -1,7 +1,7 @@
 import React from "react"
 import LoginForm from "./_components/LoginForm";
 
-const Page = (props) => {
+const Page = () => {
   return (
     <div>
       <div className="container max-w-md mx-auto">

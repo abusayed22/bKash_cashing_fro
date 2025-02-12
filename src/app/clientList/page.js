@@ -1,10 +1,7 @@
 
 import React from "react"
 import DashboardLayout from "@/src/layouts/DashboardLayout";
-import { Card } from "@/components/ui/card";
 import { CheckCircle, AlertCircle, FileText } from "lucide-react";
-import ClientCard from "./_components/ClientCard";
-import WeekDay from "./_components/WeekDay";
 import ClientListSection from "./_components/ClientListSection";
 
 const Page = (props) => {

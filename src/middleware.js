@@ -4,13 +4,11 @@ import { NextResponse } from 'next/server';
 
 
 export async function middleware(req) {
-   console.log('middleware start')
     const token = req.cookies.get('accessToken'); 
     
     if(!token) {
         return NextResponse.redirect(new URL('/auth/login',req.url))
     };
-    console.log('middleware end')
     NextResponse.next()
 }
 

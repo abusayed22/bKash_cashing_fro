@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from "react"
 import ClientCard from "./ClientCard";
 import { GetAllClients } from "../_actions/handler";
-import { Card } from "@/components/ui/card";
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
+import { Card } from "@/src/components/ui/card";
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/src/components/ui/pagination";
 
 const ClientListSection = ({ }) => {
     const [clients, setClients] = useState([]);  // To store fetched clients data

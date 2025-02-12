@@ -1,23 +1,15 @@
 'use client'
 import React, { useEffect, useState } from "react";
 
-import {
-    Table,
-    TableBody,
-    TableCaption,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from "@/components/ui/table"
 import { GetAllHistories } from "../_actions/handler";
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
-import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import moment from "moment";
 // import { formatDateTime } from "@/lib/moment";
 import Image from "next/image";
 import { formatDateTime } from "@/src/lib/moment";
 import { CreditCard } from "lucide-react";
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/src/components/ui/table";
+import { Avatar } from "@/src/components/ui/avatar";
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/src/components/ui/pagination";
 
 const HistoryCard = () => {
     const [histories, setHistory] = useState([]);

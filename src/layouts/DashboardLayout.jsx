@@ -1,7 +1,9 @@
 
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-// import { cookies } from "next/headers"
+// import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarProvider, SidebarTrigger } from "../components/ui/sidebar";
 import AppSidebar from "./_components/AppSidebar";
+// import { cookies } from "next/headers"
+// import AppSidebar from "./_components/AppSidebar";
 
 
 const DashboardLayout = async({children}) => {

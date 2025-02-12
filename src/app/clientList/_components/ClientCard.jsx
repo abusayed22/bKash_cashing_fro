@@ -1,6 +1,6 @@
 'use client'
-import { Card } from "@/components/ui/card";
 import { Avatar,AvatarFallback, AvatarImage } from "@/src/components/ui/avatar";
+import { Card } from "@/src/components/ui/card";
 import { AlertCircle, CheckCircle, FileText } from "lucide-react";
 import React from "react"
 
