@@ -53,7 +53,7 @@ const LoginForm = (props) => {
           variant: 'success',
           description: 'Login Successfully.',
         });
-        router.push('/dashboard');  // Perform the redirect immediately
+        window.location('/dashboard') // Perform the redirect immediately
       }
     } catch (error) {
       toast({
@@ -104,8 +104,8 @@ const LoginForm = (props) => {
   // handle cookie and data set
   // Function to handle token and session storage after redirect
   const handleTokenSet = (result) => {
-    const token = result.data;
-    const dashboard = result.dashboard;
+    const token = result?.data;
+    const dashboard = result?.dashboard;
 
     // Set the token and store in sessionStorage asynchronously
     if (token) {
