@@ -1,15 +1,19 @@
 'use client'
 import React, { useState } from "react"
 import { useForm } from "react-hook-form";
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+// import { Card } from "@/components/ui/card";
+// import { Button } from "@/components/ui/button";
+// import { Input } from "@/components/ui/input";
+// import { Label } from "@/components/ui/label";
 import { RegisterPost } from "../_actions/handler";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/src/hooks/use-toast";
 import { ToastProvider } from "@/src/components/ui/toast";
 import { Toaster } from "@/src/components/ui/toaster";
+import { Card } from "@/src/components/ui/card";
+import { Label } from "@/src/components/ui/label";
+import { Input } from "@/src/components/ui/input";
+import { Button } from "@/src/components/ui/button";
 
 
 const RegisterForm = (props) => {
