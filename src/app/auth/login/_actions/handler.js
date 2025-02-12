@@ -32,7 +32,7 @@ export const LoginPost = async (dataObj) => {
         // Store dashboard data in sessionStorage
         // storeDashboardInSessionStorage(dashoard)
 
-        return {response,loginData}
+        return response
     } catch (error) {
         console.log(error.message)
     }
