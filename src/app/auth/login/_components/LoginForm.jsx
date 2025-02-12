@@ -39,7 +39,10 @@ const LoginForm = (props) => {
     setLoading(true);
 
     try {
-      const { loginData, response } = await LoginPost(data);
+      const res = await LoginPost(data);
+      const loginData = res;
+      const response = res;
+      console.log(res)
 
       handleTokenSet(loginData);
 
