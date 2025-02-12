@@ -6,64 +6,27 @@ import { Card } from "@/src/components/ui/card";
 import { Avatar } from "@/src/components/ui/avatar";
 
 // Get dashboard sessionStorage
-const getDashboardFromSessionStorage = () => {
-  if (typeof window !== 'undefined') {  // Ensure code runs only in the browser
-    const data = sessionStorage.getItem('dashboard');
+// const getDashboardFromSessionStorage = () => {
+//   if (typeof window !== 'undefined') {  // Ensure code runs only in the browser
+//     const data = sessionStorage.getItem('dashboard');
 
-    if (data) {
-      try {
-        return JSON.parse(data);
-      } catch (e) {
-        console.error("Error parsing JSON from sessionStorage", e);
-        return null;
-      }
-    }
-  }
-  return null;
-};
+//     if (data) {
+//       try {
+//         return JSON.parse(data);
+//       } catch (e) {
+//         console.error("Error parsing JSON from sessionStorage", e);
+//         return null;
+//       }
+//     }
+//   }
+//   return null;
+// };
 
 
 const DashboardCard = ({ data }) => {
   const { sendbKash, sendNagad, sendBank, send, receivedbKash, receivedNagad, receivedBank, received } = data?.data || {};
-
-  console.log('dashboard loaded')
   const [loading, setLoading] = useState(true);
   const [dashboard, setDashboard] = useState(null);
-
-  // Using useRef to track the first render and avoid setting state repeatedly
-  const hasRendered = useRef(false);
-
-  // Direct logic before rendering
-  if (!hasRendered.current) {
-    hasRendered.current = true;  // Mark the component as rendered
-
-    const sessionData = getDashboardFromSessionStorage();
-
-    if (sessionData) {
-      setDashboard(sessionData);  // Set the data from session storage
-      setLoading(false);  // Stop loading after setting session data
-    } else if (data?.data) {
-      setDashboard(data?.data);  // Set the data from props
-      setLoading(false);  // Stop loading after setting data from props
-    }
-  }
-
-  // useEffect(() => {
-  //   const sessionData = getDashboardFromSessionStorage();
-
-  //   if (sessionData) {
-  //     setDashboard(sessionData);  // Set the data in state
-  //     setLoading(false);  // Set loading to false after data is fetched
-  //   } else {
-  //     // setLoading(false);  // Set loading to false if no data is found
-  //     setDashboard(data?.data)
-  //     setLoading(false);  // Set loading to false if no data is found
-  //   }
-  // }, [dashboard]);
-
-
-
-
 
   return (
     <div>

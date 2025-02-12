@@ -14,22 +14,19 @@ export const LoginPost = async (dataObj) => {
             },
             body: JSON.stringify(dataObj)
         })
-        console.log('res',response)
         const loginData = await response.json();
-        console.log('log', loginData)
-        // const token = data.data
+        const token = loginData?.data
         // const dashoard = data?.dashboard
        
 
-        // if (token) {
-        //     // Set cookie with expiration of 1 hour
-        //     const expirationDate = new Date();
-        //     expirationDate.setSeconds(expirationDate.getSeconds() + 3600);  // Add 3600 seconds (1 hour)
+        if (token) {
+            // Set cookie with expiration of 1 hour
+            const expirationDate = new Date();
+            expirationDate.setSeconds(expirationDate.getSeconds() + 3600);  // Add 3600 seconds (1 hour)
 
-        //     // Set cookie with a different SameSite attribute for testing
-        //     document.cookie = `accessToken=${token}; expires=${expirationDate.toUTCString()}; path=/; secure; samesite=lax;`;
-        // }
-        // console.log('token seted')
+            // Set cookie with a different SameSite attribute for testing
+            document.cookie = `accessToken=${token}; expires=${expirationDate.toUTCString()}; path=/; secure; samesite=lax;`;
+        }
 
 
         // Store dashboard data in sessionStorage
@@ -43,11 +40,11 @@ export const LoginPost = async (dataObj) => {
 
 
 
-export const storeDashboardInSessionStorage = (dashboardData) => {
-    console.log(dashboardData)
-    const data = JSON.stringify(dashboardData);  // Convert object to JSON string
-    sessionStorage.setItem('dashboard', data);
-};
+// export const storeDashboardInSessionStorage = (dashboardData) => {
+//     // console.log(dashboardData)
+//     const data = JSON.stringify(dashboardData);  // Convert object to JSON string
+//     sessionStorage.setItem('dashboard', data);
+// };
 
 
 

@@ -1,10 +1,6 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-// import { Card } from "@/components/ui/card";
-// import { Button } from "@/components/ui/button";
-// import { Input } from "@/components/ui/input";
-// import { Label } from "@/components/ui/label";
 import { LoginPost, storeDashboardInSessionStorage } from "../_actions/handler";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
@@ -21,7 +17,7 @@ import { Label } from "@/src/components/ui/label";
 
 const LoginForm = (props) => {
   const [loading, setLoading] = useState(false);
-  const isSubmitting = useRef(false); 
+  const isSubmitting = useRef(false);
   const {
     register,
     handleSubmit,
@@ -40,11 +36,10 @@ const LoginForm = (props) => {
 
     try {
       const res = await LoginPost(data);
-      const loginData = res;
-      const response = res;
-      console.log(res)
+      const jsonData = res?.loginData;
+      const response = res?.response;
 
-      handleTokenSet(loginData);
+      // handleTokenSet(loginData);
 
       if (response.status !== 200) {
         toast({
@@ -56,7 +51,7 @@ const LoginForm = (props) => {
           variant: 'success',
           description: 'Login Successfully.',
         });
-        window.location('/dashboard') // Perform the redirect immediately
+        router.push('/dashboard') // Perform the redirect immediately
       }
     } catch (error) {
       toast({
@@ -74,7 +69,7 @@ const LoginForm = (props) => {
   //   setLoading(true)
   //   try {
   //     const { loginData, response } = await LoginPost(data);
-      
+
   //     handleTokenSet(loginData);
   //     if (response.status !== 200) {
   //       toast({
@@ -108,7 +103,7 @@ const LoginForm = (props) => {
   // Function to handle token and session storage after redirect
   const handleTokenSet = (result) => {
     const token = result?.data;
-    const dashboard = result?.dashboard;
+    // const dashboard = result?.dashboard;
 
     // Set the token and store in sessionStorage asynchronously
     if (token) {
@@ -122,8 +117,8 @@ const LoginForm = (props) => {
       // Store dashboard data in sessionStorage
       // storeDashboardInSessionStorage(dashboard)
     }
-    console.log('token seted')
   };
+
   return (
     <ToastProvider >
       <Toaster />
