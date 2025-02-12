@@ -17,7 +17,7 @@ import { Label } from "@/src/components/ui/label";
 
 const LoginForm = (props) => {
   const [loading, setLoading] = useState(false);
-  const isSubmitting = useRef(false);
+  // const isSubmitting = useRef(false);
   const {
     register,
     handleSubmit,
@@ -29,8 +29,8 @@ const LoginForm = (props) => {
 
   const onSubmit = async (data) => {
     // Prevent submitting again if already submitting
-    if (isSubmitting.current) return;
-    isSubmitting.current = true;
+    // if (isSubmitting.current) return;
+    // isSubmitting.current = true;
 
     setLoading(true);
 
@@ -38,7 +38,7 @@ const LoginForm = (props) => {
       const res = await LoginPost(data);
       const jsonData = res?.loginData;
       const response = res?.response;
-
+      console.log(response)
       // handleTokenSet(loginData);
 
       if (response.status !== 200) {
@@ -61,42 +61,9 @@ const LoginForm = (props) => {
       console.log('Login Unsuccessfully. Something wrong!', error);
     } finally {
       setLoading(false);
-      isSubmitting.current = false;  // Allow future submissions
+      // isSubmitting.current = false;  // Allow future submissions
     }
   };
-
-  // const onSubmit = async (data) => {
-  //   setLoading(true)
-  //   try {
-  //     const { loginData, response } = await LoginPost(data);
-
-  //     handleTokenSet(loginData);
-  //     if (response.status !== 200) {
-  //       toast({
-  //         variant: 'destructive',
-  //         description: 'Login Unsuccessfully. Please try again!',
-  //       });
-  //       setLoading(false);
-  //     } else {
-  //       // setLoading(false);
-  //       toast({
-  //         variant: 'success',
-  //         description: 'Login Successfully.',
-  //       });
-  //       router.push('/dashboard'); // Perform the redirect immediately
-
-  //     }
-  //     setLoading(false)
-
-  //   } catch (error) {
-  //     toast({
-  //       variant: 'destructive',
-  //       description: `Login Unsuccessfully. Please try again! ${error.message}`,
-  //     });
-  //     console.log('Login Unsuccessfully. Something wrong!',);
-  //     setLoading(false)
-  //   }
-  // };
 
 
   // handle cookie and data set
