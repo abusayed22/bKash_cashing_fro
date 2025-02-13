@@ -1,4 +1,5 @@
 'use client'
+import { useDashboard } from "@/src/stateMange/Zustand/dashboard";
 import { MAIN_PATH } from "@/src/utility/enviroment";
 
 
@@ -16,8 +17,7 @@ export const LoginPost = async (dataObj) => {
         })
         const loginData = await response.json();
         const token = loginData?.data
-        // const dashoard = data?.dashboard
-        // console.log(loginData)
+        const dashoard = loginData?.dashboard
        
 
         if (token) {
@@ -30,8 +30,9 @@ export const LoginPost = async (dataObj) => {
         }
 
 
-        // Store dashboard data in sessionStorage
-        // storeDashboardInSessionStorage(dashoard)
+        // zustand store dashboard data
+        const dashboardData = useDashboard.getState().dashboardDataLogin; // intance of zustand func
+        dashboardData(dashoard)
 
         return response
     } catch (error) {
@@ -39,13 +40,6 @@ export const LoginPost = async (dataObj) => {
     }
 };
 
-
-
-// export const storeDashboardInSessionStorage = (dashboardData) => {
-//     // console.log(dashboardData)
-//     const data = JSON.stringify(dashboardData);  // Convert object to JSON string
-//     sessionStorage.setItem('dashboard', data);
-// };
 
 
 

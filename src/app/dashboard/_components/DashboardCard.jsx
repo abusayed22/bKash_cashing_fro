@@ -4,6 +4,7 @@ import { Send, HandCoins, CreditCard } from "lucide-react";
 import Image from "next/image";
 import { Card } from "@/src/components/ui/card";
 import { Avatar } from "@/src/components/ui/avatar";
+import { useDashboard } from "@/src/stateMange/Zustand/dashboard";
 
 // Get dashboard sessionStorage
 // const getDashboardFromSessionStorage = () => {
@@ -23,10 +24,12 @@ import { Avatar } from "@/src/components/ui/avatar";
 // };
 
 
-const DashboardCard = ({ data }) => {
-  const { sendbKash, sendNagad, sendBank, send, receivedbKash, receivedNagad, receivedBank, received } = data?.data || {};
+const DashboardCard = () => {
+  // const { sendbKash, sendNagad, sendBank, send, receivedbKash, receivedNagad, receivedBank, received } = data?.data || {};
   const [loading, setLoading] = useState(true);
   const [dashboard, setDashboard] = useState(null);
+  const dashboardZustand = useDashboard(state => state.dashboard);
+  const { sendbKash, sendNagad, sendBank, send, receivedbKash, receivedNagad, receivedBank, received } = dashboardZustand || {};
 
   return (
     <div>
