@@ -5,7 +5,7 @@ import {persist} from 'zustand/middleware'
 
 
 export const useDashboard = create(
-    persist(
+    // persist(
         (set) => ({
             dashboard: null,
 
@@ -15,7 +15,7 @@ export const useDashboard = create(
                 try {
                     const dataObj = await GetDashboardData();
                     const data = dataObj?.data
-                    console.log(data)
+                    console.log("Fetched Dashboard Data:", data);
                     if(data?.length > 0) {
                         set({dashboard:data})
                     } return null
@@ -27,5 +27,5 @@ export const useDashboard = create(
             // fetch dashboard data when login
             dashboardDataLogin : (data) => set({dashboard: data})
         })
-    )
+    // )
 )
