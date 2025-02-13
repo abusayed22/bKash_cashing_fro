@@ -23,8 +23,8 @@ import { Avatar } from "@/src/components/ui/avatar";
 // };
 
 
-const DashboardCard = ({ data }) => {
-  const { sendbKash, sendNagad, sendBank, send, receivedbKash, receivedNagad, receivedBank, received } = data?.data || {};
+const DashboardCard = () => {
+  // const { sendbKash, sendNagad, sendBank, send, receivedbKash, receivedNagad, receivedBank, received } = data?.data || {};
   const [loading, setLoading] = useState(true);
   const [dashboard, setDashboard] = useState(null);
 

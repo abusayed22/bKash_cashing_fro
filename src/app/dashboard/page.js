@@ -10,7 +10,7 @@ const Page = async(props) => {
   return (
     <DashboardLayout>
       <div className="container max-w-md lg:max-w-full mx-auto">
-        <DashboardCard data={dashboardData}/>
+        <DashboardCard />
       </div>
     </DashboardLayout>
   )
