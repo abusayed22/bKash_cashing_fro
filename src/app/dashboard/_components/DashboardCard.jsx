@@ -35,7 +35,7 @@ const DashboardCard = ({ data }) => {
       {/* loading ? (
           <p className="mt-4 text-sm text-center text-gray-500 dark:text-gray-400">Loading...</p>
         ) : ( */}
-      {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-4">
         <Card
           className="flex items-center justify-between bg-slate-200 p-6 shadow-md rounded-lg transition-transform transform hover:scale-105 hover:shadow-xl"
         >
@@ -136,7 +136,7 @@ const DashboardCard = ({ data }) => {
             <p className="text-2xl font-bold">{receivedNagad || 0} ৳</p>
           </div>
         </Card>
-      </div> */}
+      </div>
     </div>
   )
 };
