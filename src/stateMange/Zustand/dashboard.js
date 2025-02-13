@@ -13,7 +13,8 @@ export const useDashboard = create(
             // fetch data from backend
             fetchDashboardData : async() => {
                 try {
-                    const data = await GetDashboardData();
+                    const dataObj = await GetDashboardData();
+                    const data = dataObj?.data
                     console.log(data)
                     if(data?.length > 0) {
                         set({dashboard:data})
