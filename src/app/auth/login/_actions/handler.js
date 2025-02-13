@@ -1,4 +1,4 @@
-
+'use client'
 import { MAIN_PATH } from "@/src/utility/enviroment";
 
 
@@ -17,7 +17,7 @@ export const LoginPost = async (dataObj) => {
         const loginData = await response.json();
         const token = loginData?.data
         // const dashoard = data?.dashboard
-        console.log(loginData)
+        // console.log(loginData)
        
 
         if (token) {
