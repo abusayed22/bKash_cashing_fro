@@ -28,20 +28,12 @@ const LoginForm = (props) => {
   const { toast } = useToast()
 
   const onSubmit = async (data) => {
-    // Prevent submitting again if already submitting
-    // if (isSubmitting.current) return;
-    // isSubmitting.current = true;
 
     setLoading(true);
 
     try {
+      console.log('action start')
       const response = await LoginPost(data);
-      // const jsonData = res?.loginData;
-      // const response = res?.response;
-      // console.log('res',res)
-      console.log(response)
-      // handleTokenSet(loginData);
-
       if (response?.status !== 200) {
         toast({
           variant: 'destructive',
@@ -54,6 +46,7 @@ const LoginForm = (props) => {
         });
         router.push('/dashboard') // Perform the redirect immediately
       }
+      console.log('token set & navigated')
     } catch (error) {
       toast({
         variant: 'destructive',
