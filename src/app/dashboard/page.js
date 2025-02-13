@@ -6,11 +6,11 @@ import DashboardCard from "./_components/DashboardCard";
 const Page = async(props) => {
   console.log('dashboard page')
 
-  // const dashboardData = await GetDashboardData();
+  const dashboardData = await GetDashboardData();
   return (
     <DashboardLayout>
       <div className="container max-w-md lg:max-w-full mx-auto">
-        <DashboardCard />
+        <DashboardCard data={dashboardData}/>
       </div>
     </DashboardLayout>
   )
