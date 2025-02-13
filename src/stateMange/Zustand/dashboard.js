@@ -14,6 +14,7 @@ export const useDashboard = create(
             fetchDashboardData : async() => {
                 try {
                     const data = await GetDashboardData();
+                    console.log(data)
                     if(data?.length > 0) {
                         set({dashboard:data})
                     } return null
