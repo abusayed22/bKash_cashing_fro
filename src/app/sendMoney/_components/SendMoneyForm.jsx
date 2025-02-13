@@ -6,6 +6,7 @@ import { SendMoneyAdd } from '../_actions/handler';
 import { useToast } from '@/src/hooks/use-toast';
 import { ToastProvider } from '@/src/components/ui/toast';
 import { Toaster } from '@/src/components/ui/toaster';
+import { useDashboard } from '@/src/stateMange/Zustand/dashboard';
 
 
 
@@ -109,6 +110,10 @@ const SendMoneyForm = (props) => {
             setErrors(newErrors);
             setLoading(false)
         }
+
+        // refetch data for dashboard
+        const reFetchDashboard = useDashboard.getState().fetchDashboardData;
+        reFetchDashboard()
     };
 
 
