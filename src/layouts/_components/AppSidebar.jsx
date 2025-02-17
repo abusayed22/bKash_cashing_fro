@@ -10,6 +10,7 @@ import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarMenu
 
 const AppSidebar = (props) => {
 
+  const router = useRouter();
   // Menu items.
   const items = [
     {
@@ -62,6 +63,7 @@ const AppSidebar = (props) => {
 
   const handleLogout = async () => {
     await LogoutAction();
+    router.push("/auth/login")
   };
 
   return (
