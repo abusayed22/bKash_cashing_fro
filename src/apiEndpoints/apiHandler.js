@@ -103,29 +103,3 @@ export const isRegister = async (fullName, email, password) => {
 
 
 
-
-
-
-
-if (isRegister.length === 0) {
-    console.log('ehl')
-    const createdUser = await prisma.admin.create({
-        data: {
-            fullname: fullName,
-            email: email,
-            password: password,
-            otp: '',
-        }
-    });
-    
-    if(createdUser) {
-        const token = await CreateToken(isUser.email, isUser.id)
-        const cookieStore = await cookies()
-        cookieStore.set('accessToken', token)
-        
-        return NextResponse.json({ status: 201,message: "User Login Successfully" })
-    }
-    
-} else {
-    return { status: 409,message: "User Already Exist!" }
-}
