@@ -1,16 +1,17 @@
 import React from "react"
-import { GetDashboardData } from "./_actions/handler";
 import DashboardLayout from "@/src/layouts/DashboardLayout";
 import DashboardCard from "./_components/DashboardCard";
+import { getDashboard } from "./_actions/handler";
 
 const Page = async(props) => {
-  console.log('dashboard page')
 
-  // const dashboardData = await GetDashboardData();
+
+  const dashboardData = await getDashboard();
+  console.log(dashboardData)
   return (
     <DashboardLayout>
       <div className="container max-w-md lg:max-w-full mx-auto">
-        <DashboardCard />
+        <DashboardCard data={dashboardData}/>
       </div>
     </DashboardLayout>
   )

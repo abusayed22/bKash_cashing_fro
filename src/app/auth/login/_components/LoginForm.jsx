@@ -1,7 +1,7 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { LoginPost, storeDashboardInSessionStorage } from "../_actions/handler";
+import { isLogin, LoginPost, storeDashboardInSessionStorage } from "../_actions/handler";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import { useToast } from "@/src/hooks/use-toast";
@@ -28,57 +28,36 @@ const LoginForm = (props) => {
   const { toast } = useToast()
 
   const onSubmit = async (data) => {
-
-    setLoading(true);
-
+    setLoading(true)
     try {
-      console.log('action start')
-      const response = await LoginPost(data);
-      if (response?.status !== 200) {
-        toast({
-          variant: 'destructive',
-          description: 'Login Unsuccessfully. Please try again!',
-        });
-      } else {
+      const {email,password} = data;
+      const result = await isLogin(email, password);
+      console.log(result)
+      setLoading(false)
+      if (result) {
         toast({
           variant: 'success',
           description: 'Login Successfully.',
         });
-        router.push('/dashboard') // Perform the redirect immediately
+        router.push('/dashboard')
+      }else{
+        setLoading(false)
+        toast({
+          variant: 'destructive',
+          description: `Login Unsuccessfully. Please try again! ${error.message}`,
+        });
       }
-      console.log('token set & navigated')
     } catch (error) {
+      setLoading(false)
       toast({
         variant: 'destructive',
-        description: `Login Unsuccessfully. Please try again! ${error.message}`,
+        description: `Something wrong!. Please try again! ${error}`,
       });
-      console.log('Login Unsuccessfully. Something wrong!', error);
-    } finally {
-      setLoading(false);
-      // isSubmitting.current = false;  // Allow future submissions
     }
   };
 
 
-  // handle cookie and data set
-  // Function to handle token and session storage after redirect
-  const handleTokenSet = (result) => {
-    const token = result?.data;
-    // const dashboard = result?.dashboard;
 
-    // Set the token and store in sessionStorage asynchronously
-    if (token) {
-      // Set cookie with expiration of 1 hour
-      const expirationDate = new Date();
-      expirationDate.setSeconds(expirationDate.getSeconds() + 3600);  // Add 3600 seconds (1 hour)
-
-      // Set cookie with a different SameSite attribute for testing
-      document.cookie = `accessToken=${token}; expires=${expirationDate.toUTCString()}; path=/; secure; samesite=lax;`;
-
-      // Store dashboard data in sessionStorage
-      // storeDashboardInSessionStorage(dashboard)
-    }
-  };
 
   return (
     <ToastProvider >

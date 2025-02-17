@@ -14,6 +14,7 @@ import { Card } from "@/src/components/ui/card";
 import { Label } from "@/src/components/ui/label";
 import { Input } from "@/src/components/ui/input";
 import { Button } from "@/src/components/ui/button";
+import { isRegister } from "@/src/apiEndpoints/apiHandler";
 
 
 const RegisterForm = (props) => {
@@ -31,24 +32,23 @@ const RegisterForm = (props) => {
   const onSubmit = async (data) => {
     setLoading(true)
     try {
-      const result = await RegisterPost(data);
-      console.log('response', result.status)
-      if (result.status !== 201) {
-        toast({
-          variant: 'destructive',
-          description: `Register Unsuccessfully!.Please try again!`,
-        });
-        console.log('Register Unsuccessfully. Please try again!');
-        setLoading(false)
-      } else {
-        toast({
-          variant: 'success',
-          description: `Register Successfully. `,
-        });
-        // redirect('/dashboard');
-        router.push('/dashboard')
-        setLoading(false)
-      }
+      const result = await isRegister(data.fullName,data.email,data.password);
+      console.log(result)
+      // if (result !== "failled") {
+      //   toast({
+      //     variant: 'destructive',
+      //     description: `Register Unsuccessfully!.Please try again!`,
+      //   });
+      //   console.log('Register Unsuccessfully. Please try again!');
+      //   setLoading(false)
+      // } else {
+      //   toast({
+      //     variant: 'success',
+      //     description: `Register Successfully. `,
+      //   });
+      //   router.push('/dashboard')
+      //   setLoading(false)
+      // }
     } catch (error) {
       toast({
         variant: 'destructive',

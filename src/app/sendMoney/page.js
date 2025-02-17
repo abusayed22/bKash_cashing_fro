@@ -6,7 +6,7 @@ const Page = (props) => {
   return (
     <DashboardLayout>
       <div className="container max-w-md mx-auto">
-      <SendMoneyForm />
+        <SendMoneyForm />
       </div>
     </DashboardLayout>
   )

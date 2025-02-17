@@ -4,38 +4,18 @@ import { Send, HandCoins, CreditCard } from "lucide-react";
 import Image from "next/image";
 import { Card } from "@/src/components/ui/card";
 import { Avatar } from "@/src/components/ui/avatar";
-import { useDashboard } from "@/src/stateMange/Zustand/dashboard";
-
-// Get dashboard sessionStorage
-// const getDashboardFromSessionStorage = () => {
-//   if (typeof window !== 'undefined') {  // Ensure code runs only in the browser
-//     const data = sessionStorage.getItem('dashboard');
-
-//     if (data) {
-//       try {
-//         return JSON.parse(data);
-//       } catch (e) {
-//         console.error("Error parsing JSON from sessionStorage", e);
-//         return null;
-//       }
-//     }
-//   }
-//   return null;
-// };
 
 
-const DashboardCard = () => {
-  // const { sendbKash, sendNagad, sendBank, send, receivedbKash, receivedNagad, receivedBank, received } = data?.data || {};
-  const [loading, setLoading] = useState(true);
-  const [dashboard, setDashboard] = useState(null);
-  const dashboardZustand = useDashboard(state => state.dashboard);
-  const { sendbKash, sendNagad, sendBank, send, receivedbKash, receivedNagad, receivedBank, received } = dashboardZustand || {};
+
+const DashboardCard = (data) => {
+  const { sendbKash, sendNagad, sendBank, send, receivedbKash, receivedNagad, receivedBank, received } = data?.data || {};
+  // const [loading, setLoading] = useState(true);
 
   return (
     <div>
       {/* { */}
-      {/* loading ? (
-          <p className="mt-4 text-sm text-center text-gray-500 dark:text-gray-400">Loading...</p>
+      {/* loading ? ( */}
+          {/* <p className="mt-4 text-sm text-center text-gray-500 dark:text-gray-400">Loading...</p>
         ) : ( */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-4">
         <Card

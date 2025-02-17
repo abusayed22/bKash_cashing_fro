@@ -1,0 +1,79 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+
+
+model Admin {
+  id        Int       @id @unique @default(autoincrement())
+  fullname  String?
+  email     String    @unique
+  password  String?
+  otp       String
+  token     String?
+  createdAt DateTime? @default(now())
+  updateAt  DateTime? @default(now()) @updatedAt
+}
+
+model Client {
+  id        Int       @id @unique @default(autoincrement())
+  fullname  String?
+  number    String?
+  address   String?
+  createdAt DateTime? @default(now())
+  updateAt  DateTime? @default(now()) @updatedAt
+
+  Sendmoney     Sendmoney[]
+  receivedmoney Receivedmoney[]
+  history       History[]
+}
+
+model Sendmoney {
+  id        Int       @id @unique @default(autoincrement())
+  clientid  Int
+  number    String?
+  amount    Decimal?  @db.Decimal(30, 2)
+  method    String?
+  note      String?
+  client    Client    @relation(fields: [clientid], references: [id])
+  createdAt DateTime? @default(now())
+  updateAt  DateTime? @default(now()) @updatedAt
+}
+
+model Receivedmoney {
+  id        Int       @id @unique @default(autoincrement())
+  clientid  Int
+  number    String?
+  amount    Decimal?  @db.Decimal(30, 2)
+  method    String?
+  note      String?
+  client    Client    @relation(fields: [clientid], references: [id])
+  createdAt DateTime? @default(now())
+  updateAt  DateTime? @default(now()) @updatedAt
+}
+
+model History {
+  id        Int       @id @unique @default(autoincrement())
+  clientid  Int
+  amount    Decimal   @db.Decimal(30, 2)
+  note      String?
+  status    String?
+  number    String?
+  method    String?
+  client    Client    @relation(fields: [clientid], references: [id])
+  createdAt DateTime? @default(now())
+  updateAt  DateTime? @default(now()) @updatedAt
+}
+

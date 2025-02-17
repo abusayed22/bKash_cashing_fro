@@ -11,15 +11,18 @@ const JWT_EXPIRE = "1h"
 // create token 
 export async function CreateToken(email, id) {
     try {
-        const secret = new TextEncoder().encode(JWT_SECRET);
+        const secret = new TextEncoder().encode(process.env.JWT_SECRET);
         const payload = { email, id };
+        console.log(payload)
 
-        let token = new SignJWT(payload)
-            .setProtectedHeader({ alg: 'Ha256' })
+        let token = await new SignJWT(payload)
+            .setProtectedHeader({ alg: 'HS256' })
             .setIssuedAt()
-            .setIssuer(JWT_ISSUER)
-            .setExpirationTime('1h') // process.JWT_EXPIRE
-            .sign(secret)
+            .setIssuer(process.env.JWT_ISSUER)
+            .setExpirationTime(process.env.JWT_EXPIRE) // process.JWT_EXPIRE
+            .sign(secret);
+
+        console.log(token)
 
         return token;
     } catch (error) {

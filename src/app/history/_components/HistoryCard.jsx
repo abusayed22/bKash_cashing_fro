@@ -45,6 +45,7 @@ const HistoryCard = () => {
         fetchData();
     }, [pagination?.currentPage]); // Empty dependency array ensures the effect runs only once on mount
 
+    console.log(pagination)
 
     return (
         <div className="container"> 

@@ -1,12 +1,12 @@
 'use client'
 import React, { useState } from "react"
-import { ClientAdd } from "../_actions/handler";
 import { useToast } from "@/src/hooks/use-toast";
 import { ToastProvider } from "@/src/components/ui/toast";
 import { Toaster } from "@/src/components/ui/toaster";
+import { ClientAdd } from "../_actions/handler";
 
 const ClientAddForm = (props) => {
-    const [loading,setLoanding] = useState(false)
+    const [loading,setLoading] = useState(false)
     const [formData, setFormData] = useState({
                 customerName: '',
                 phoneNumber: '',
@@ -30,7 +30,7 @@ const ClientAddForm = (props) => {
             const {toast} = useToast();
         
             const handleSubmit = async(e) => {
-                setLoanding(true)
+                setLoading(true)
                 e.preventDefault();
                 const newErrors = {};
 
@@ -46,37 +46,45 @@ const ClientAddForm = (props) => {
                 if (!formData.address) newErrors.address = 'Address Method is required';
         
                 if (Object.keys(newErrors).length === 0) {
-                    console.log(formData)
                     // Submit the form if no errors
                     try {
                         const dataObj = {
-                            name:formData.customerName,
-                            number:formData.phoneNumber,
-                            address:formData.address,
-
-                        }
+                            name: formData.customerName,
+                            number: formData.phoneNumber,
+                            address: formData.address,
+                        };
+                    
                         const response = await ClientAdd(dataObj);
-                        console.log(response)
-                        if (response.error) {
+                        
+                        if (response.status === 201) {
+                            setLoading(false); 
+                            toast({
+                                variant: 'success',
+                                description: 'Client added successfully!',
+                            });
+                            setFormData({
+                                customerName: "",
+                                phoneNumber: "",
+                                amount: "",
+                                address: "",
+                                note: "",
+                            });
                         } else {
-                           toast({
-                            variant: 'success',
-                            description: `Client add Successfully`,
-                        });
-                          setFormData({ customerName: "", phoneNumber: "", amount: "", address: "", note: "" });
+                            setLoading(false);
+                            console.error("Submission failed:", response.message);
+                            toast({
+                                variant: 'destructive',
+                                description: `Client Add Failed!. Please try again! ${response.message}`,
+                            });
                         }
-                        setLoanding(false)
-                      } catch (error) {
-                        setLoanding(false)
-                        console.error("Submission failed:", error);
+                    } catch (error) {
+                        setLoading(false);
+                        console.error("Submission failed:", error.message); // Ensure it's error.message
                         toast({
                             variant: 'destructive',
-                            description: `Client Add Failed!. Please try again! ${error.message}`,
+                            description: `Client Add Failed!. Please try again! ${error.message}`, // Use error.message for proper detail
                         });
-                      }
-                } else {
-                    setErrors(newErrors);
-                    setLoanding(false)
+                    }
                 }
             };
         
@@ -136,7 +144,7 @@ const ClientAddForm = (props) => {
 
             {
                 loading ? (
-                <button disabled type="submit" className="mt-4 w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700">Loading...</button>
+                <button disabled={loading} type="submit" className="mt-4 w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700">Loading...</button>
                 ):(
                     <button type="submit" className="mt-4 w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700">Submit</button>
                 )

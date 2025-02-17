@@ -1,12 +1,11 @@
 'use client'
 
 import { useEffect, useState } from 'react';
-import { PatchClients } from '../../clientList/_actions/handler';
 import { SendMoneyAdd } from '../_actions/handler';
 import { useToast } from '@/src/hooks/use-toast';
 import { ToastProvider } from '@/src/components/ui/toast';
 import { Toaster } from '@/src/components/ui/toaster';
-import { useDashboard } from '@/src/stateMange/Zustand/dashboard';
+import { PatchClients } from '../../clientList/_actions/handler';
 
 
 
@@ -14,15 +13,15 @@ import { useDashboard } from '@/src/stateMange/Zustand/dashboard';
 
 const SendMoneyForm = (props) => {
     const [loading, setLoading] = useState(false);
-    const [clients, setClients] = useState();
+    const [clients, setClients] = useState([]);
 
     // clients fatching
     useEffect(() => {
         const fetchClients = async () => {
             try {
                 const clientsData = await PatchClients();
-                if (clientsData.status === "ok") {
-                    setClients(clientsData.data);
+                if (clientsData) {
+                    setClients(clientsData);
                 }
             } catch (error) {
                 console.error("Failed to fetch clients:", error);
@@ -91,7 +90,7 @@ const SendMoneyForm = (props) => {
 
                 }
                 const response = await SendMoneyAdd(dataObj);
-                if (response.status === 'ok') {
+                if (response.status === 201) {
                     toast({
                         variant: 'success',
                         description: `Send Money Successfully Added.`,
@@ -110,10 +109,6 @@ const SendMoneyForm = (props) => {
             setErrors(newErrors);
             setLoading(false)
         }
-
-        // refetch data for dashboard
-        const reFetchDashboard = useDashboard.getState().fetchDashboardData;
-        reFetchDashboard()
     };
 
 

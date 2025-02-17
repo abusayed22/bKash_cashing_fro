@@ -1,44 +1,42 @@
-'use client'
-import { useDashboard } from "@/src/stateMange/Zustand/dashboard";
-import { MAIN_PATH } from "@/src/utility/enviroment";
+"use server"
+
+import prisma from "@/src/lib/globalPrisma";
+import { CreateToken } from "@/src/utility/tokenHelper";
+import { cookies } from "next/headers";
 
 
 
-export const LoginPost = async (dataObj) => {
+
+// login routing point 
+export const isLogin = async (email, password) => {
     try {
+        const isUser = await prisma.admin.findUnique({
+            where: {
+                email: email,
+                password: password
+            }
+        });
+        
 
-        const response = await fetch(`${MAIN_PATH}/auth/login`, {
-            cache: 'no-cache',
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(dataObj)
+        const countUser = await prisma.admin.count({
+            where: {
+                email: email
+            }
         })
-        const loginData = await response.json();
-        const token = loginData?.data
-        const dashoard = loginData?.dashboard
-       
+        
 
-        if (token) {
-            // Set cookie with expiration of 1 hour
-            const expirationDate = new Date();
-            expirationDate.setSeconds(expirationDate.getSeconds() + 3600);  // Add 3600 seconds (1 hour)
-
-            // Set cookie with a different SameSite attribute for testing
-            document.cookie = `accessToken=${token}; expires=${expirationDate.toUTCString()}; path=/; secure; samesite=lax;`;
+        if (countUser > 0) {
+            const token = await CreateToken(isUser.email, isUser.id)
+            const cookieStore = await cookies()
+            cookieStore.set('accessToken', token)
+            console.log('token seted')
         }
-
-
-        // zustand store dashboard data
-        const dashboardData = useDashboard.getState().dashboardDataLogin; // intance of zustand func
-        dashboardData(dashoard)
-
-        return response
+        return true
     } catch (error) {
-        console.log(error.message)
+        console.error(error)
+        return false
     }
-};
+}
 
 
 

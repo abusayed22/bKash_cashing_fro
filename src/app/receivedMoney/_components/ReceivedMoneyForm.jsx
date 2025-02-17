@@ -4,38 +4,30 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { ReceivedMoneyAdd } from "../_actions/handler";
-import { PatchClients } from "../../clientList/_actions/handler";
 import { useToast } from "@/src/hooks/use-toast";
 import { ToastProvider } from "@/src/components/ui/toast";
 import { Toaster } from "@/src/components/ui/toaster";
+import { PatchClients } from "../../clientList/_actions/handler";
 
 
 const ReceivedMoneyForm = (props) => {
     const [loading, setLoading] = useState(false);
-    const [clients, setClients] = useState();
+    const [clients, setClients] = useState([]);
 
     const { toast } = useToast();
-    // clients fatching
+    
     useEffect(() => {
         const fetchClients = async () => {
             try {
                 const clientsData = await PatchClients();
-                if (clientsData.status === "ok") {
-                    setClients(clientsData.data);
+                if (clientsData) {
+                    setClients(clientsData);
                 }
             } catch (error) {
                 console.error("Failed to fetch clients:", error);
-                toast({
-                    variant: 'destructive',
-                    description: `Failed to fetch clients: ${error.message}`,
-                });
             }
         };
         fetchClients();
-        // Optional: Cleanup function if needed
-        // return () => {
-        //     // Cleanup logic here (e.g., canceling requests)
-        // };
     }, []);
 
     const [formData, setFormData] = useState({
@@ -67,7 +59,6 @@ const ReceivedMoneyForm = (props) => {
         setLoading(true)
         const newErrors = {};
 
-
         // Validation
         if (!formData.customerName) newErrors.customerName = 'Customer Name is required';
         // if (!formData.phoneNumber || !/^\d{10}$/.test(formData.phoneNumber)) {
@@ -92,7 +83,8 @@ const ReceivedMoneyForm = (props) => {
 
                 }
                 const response = await ReceivedMoneyAdd(dataObj);
-                if (response.status === 'ok') {
+                console.log(response)
+                if (response.status === 201) {
                     toast({
                         variant: 'success',
                         description: `Received Money Added Successfully.`,
