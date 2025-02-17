@@ -34,17 +34,17 @@ const LoginForm = (props) => {
       const result = await isLogin(email, password);
       console.log(result)
       setLoading(false)
-      if (result) {
+      if (result?.status === 200) {
         toast({
           variant: 'success',
-          description: 'Login Successfully.',
+          description: result?.message,
         });
         router.push('/dashboard')
       }else{
         setLoading(false)
         toast({
           variant: 'destructive',
-          description: `Login Unsuccessfully. Please try again! ${error.message}`,
+          description: `Login Unsuccessfully. ${result?.message}`,
         });
       }
     } catch (error) {

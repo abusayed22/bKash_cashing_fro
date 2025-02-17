@@ -7,7 +7,6 @@ const Page = async(props) => {
 
 
   const dashboardData = await getDashboard();
-  console.log(dashboardData)
   return (
     <DashboardLayout>
       <div className="container max-w-md lg:max-w-full mx-auto">

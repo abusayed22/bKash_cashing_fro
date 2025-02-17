@@ -1,11 +1,6 @@
 'use client'
 import React, { useState } from "react"
 import { useForm } from "react-hook-form";
-// import { Card } from "@/components/ui/card";
-// import { Button } from "@/components/ui/button";
-// import { Input } from "@/components/ui/input";
-// import { Label } from "@/components/ui/label";
-import { RegisterPost } from "../_actions/handler";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/src/hooks/use-toast";
 import { ToastProvider } from "@/src/components/ui/toast";
@@ -14,7 +9,7 @@ import { Card } from "@/src/components/ui/card";
 import { Label } from "@/src/components/ui/label";
 import { Input } from "@/src/components/ui/input";
 import { Button } from "@/src/components/ui/button";
-import { isRegister } from "@/src/apiEndpoints/apiHandler";
+import { isRegister } from "../_actions/handler";
 
 
 const RegisterForm = (props) => {
@@ -33,22 +28,21 @@ const RegisterForm = (props) => {
     setLoading(true)
     try {
       const result = await isRegister(data.fullName,data.email,data.password);
-      console.log(result)
-      // if (result !== "failled") {
-      //   toast({
-      //     variant: 'destructive',
-      //     description: `Register Unsuccessfully!.Please try again!`,
-      //   });
-      //   console.log('Register Unsuccessfully. Please try again!');
-      //   setLoading(false)
-      // } else {
-      //   toast({
-      //     variant: 'success',
-      //     description: `Register Successfully. `,
-      //   });
-      //   router.push('/dashboard')
-      //   setLoading(false)
-      // }
+      
+      if (result.status === 201) {
+        toast({
+          variant: 'success',
+          description: result.message,
+        });
+        router.push('/dashboard')
+        setLoading(false)
+      } else {
+        toast({
+          variant: 'destructive',
+          description: result.message,
+        });
+      }
+      setLoading(false)
     } catch (error) {
       toast({
         variant: 'destructive',

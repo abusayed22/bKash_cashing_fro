@@ -38,7 +38,6 @@ export const getDashboard = async () => {
     //     _sum:{amount:true}
     //   })
     //   const todayTotalSend = todayTotalSendAmount._sum.amount
-      console.log('send ',todayTotalSend)
     
 
 
@@ -46,45 +45,38 @@ export const getDashboard = async () => {
       const todayTotalReceived = await getTotalAmount('receivedmoney', {
           createdAt: { gte: todayStart, lte: todayEnd }
       })
-      console.log('received',todayTotalReceived)
 
 
       //  today total bKash send amount 
       const todayTotalSendbkash = await getTotalAmount('history', {
           createdAt: { gte: todayStart, lte: todayEnd }, method: 'b', status: 'Send'
       })
-      console.log('sendBkash',todayTotalSendbkash)
       
       //  today total Bank Received amount 
       const todayTotalReceivedbkash = await getTotalAmount('history', {
           createdAt: { gte: todayStart, lte: todayEnd }, method: 'bank', status: 'Received'
       })
-      console.log('receivedBkash',todayTotalReceivedbkash)
 
       //  today total Bank send amount 
       const todayTotalSendBank = await getTotalAmount('history', {
           createdAt: { gte: todayStart, lte: todayEnd }, method: 'bank', status: 'Send'
       })
-      console.log('sendBank',todayTotalSendBank)
 
       //  today total Bank Received amount
       const todayTotalReceivedBank = await getTotalAmount('history', {
           createdAt: { gte: todayStart, lte: todayEnd }, method: 'bank', status: 'Received'
       })
-      console.log('receivedBank',todayTotalReceivedBank)
 
 
       //  today total Nagad Send amount 
       const todayTotalSendNagad = await getTotalAmount('history', {
           createdAt: { gte: todayStart, lte: todayEnd }, method: 'n', status: 'Send'
       })
-      console.log('sendNagad',todayTotalSendNagad)
 
       //  today total Nagad Received amount
       const todayTotalReceivedNagad = await getTotalAmount('history', {
           createdAt: { gte: todayStart, lte: todayEnd }, method: 'n', status: 'Received'
       })
-      console.log('receivedNagad',todayTotalReceivedNagad)
 
       return  {
               send: todayTotalSend,

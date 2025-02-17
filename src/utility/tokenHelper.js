@@ -13,7 +13,6 @@ export async function CreateToken(email, id) {
     try {
         const secret = new TextEncoder().encode(process.env.JWT_SECRET);
         const payload = { email, id };
-        console.log(payload)
 
         let token = await new SignJWT(payload)
             .setProtectedHeader({ alg: 'HS256' })
@@ -22,7 +21,6 @@ export async function CreateToken(email, id) {
             .setExpirationTime(process.env.JWT_EXPIRE) // process.JWT_EXPIRE
             .sign(secret);
 
-        console.log(token)
 
         return token;
     } catch (error) {
@@ -33,11 +31,8 @@ export async function CreateToken(email, id) {
 
 // token Decoded
 export async function TokenDecoded(token) {
-    const JWT_SECRET = 'apps-key-bKash'
-    const JWT_ISSUER = "Localhost"
-    const JWT_EXPIRE = "1h"
     try {
-        const secret = new TextEncoder().encode(JWT_SECRET);
+        const secret = new TextEncoder().encode(process.env.JWT_SECRET);
         const decoded = await jwtVerify(token, secret);
         return decoded['payload']
     } catch (error) {

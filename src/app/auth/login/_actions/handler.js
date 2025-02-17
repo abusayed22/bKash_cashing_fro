@@ -3,6 +3,7 @@
 import prisma from "@/src/lib/globalPrisma";
 import { CreateToken } from "@/src/utility/tokenHelper";
 import { cookies } from "next/headers";
+import bcrypt from 'bcrypt';
 
 
 
@@ -10,31 +11,32 @@ import { cookies } from "next/headers";
 // login routing point 
 export const isLogin = async (email, password) => {
     try {
-        const isUser = await prisma.admin.findUnique({
+        
+        const existUser = await prisma.admin.findUnique({
             where: {
-                email: email,
-                password: password
+                email:email
             }
         });
-        
 
-        const countUser = await prisma.admin.count({
-            where: {
-                email: email
-            }
-        })
-        
+       if(!existUser){
+        return {status: 401,message: "User Not Exist!."}
+       }
 
-        if (countUser > 0) {
-            const token = await CreateToken(isUser.email, isUser.id)
+        const isMatch = await bcrypt.compare(password, existUser.password);
+        if(!isMatch){
+            return {status: 401,message: "Incorrect Password"}
+        }
+
+        if(existUser){
+            const token = await CreateToken(existUser.email, existUser.id)
             const cookieStore = await cookies()
             cookieStore.set('accessToken', token)
-            console.log('token seted')
+            return {status: 200,message:'Login Successfully.'}
+        } else {
+            return {status: 404,message:'User No Exist!.'}
         }
-        return true
     } catch (error) {
-        console.error(error)
-        return false
+        return {status: 500,message:`Something wrong!: ${error}`}
     }
 }
 
