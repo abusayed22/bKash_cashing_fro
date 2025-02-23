@@ -12,7 +12,6 @@ export const getDashboard = async (req,res) => {
     res.setHeader('Cache-Control', 'no-store');
   res.setHeader('Pragma', 'no-cache');
   res.setHeader('Expires', '0');
-  NextResponse.
   try {
       const todayStart = new Date();
       todayStart.setHours(0, 0, 0, 0)
