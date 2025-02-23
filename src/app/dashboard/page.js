@@ -10,7 +10,7 @@ export async function getStaticProps() {
   return { props: { repo } }
 }
 
-const Page = async({ Component, pageProps }) => {
+const Page = async({ Component, pageProps, example}) => {
 
 
   // const dashboardData = await getDashboard();
@@ -25,16 +25,11 @@ const Page = async({ Component, pageProps }) => {
 };
 
 
-Page.getInitialProps = async () => {
-  let pageProps = {};
-
-  try {
-    let data = await getDashboard();
-    pageProps["data"] = data;
-  } catch (error) {}
-
-  return { pageProps };
-};
+MyApp.getInitialProps = async (context) => {
+  const ctx = await App.getInitialProps(context)
+ 
+  return { ...ctx, example: 'data' }
+}
 
 
 export default Page;
