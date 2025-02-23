@@ -9,7 +9,6 @@ import { cookies } from "next/headers";
 
 export const getDashboard = async () => {
     
-
   try {
       const todayStart = new Date();
       todayStart.setHours(0, 0, 0, 0)
