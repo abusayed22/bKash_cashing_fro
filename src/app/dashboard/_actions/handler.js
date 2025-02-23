@@ -3,14 +3,16 @@
 import prisma from "@/src/lib/globalPrisma";
 import { MAIN_PATH } from "@/src/utility/enviroment";
 import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
 
 
 
 
-export const getDashboard = async (req) => {
+export const getDashboard = async (req,res) => {
     res.setHeader('Cache-Control', 'no-store');
   res.setHeader('Pragma', 'no-cache');
   res.setHeader('Expires', '0');
+  NextResponse.
   try {
       const todayStart = new Date();
       todayStart.setHours(0, 0, 0, 0)
