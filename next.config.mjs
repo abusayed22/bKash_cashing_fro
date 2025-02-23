@@ -12,17 +12,22 @@ const nextConfig = {
           },
         ],
       },
-      headers: () => [
-        {
-          source: '/:path*',
-          headers: [
-            {
-              key: 'Cache-Control',
-              value: 'no-store',
-            },
-          ],
+      // headers: () => [
+      //   {
+      //     source: '/:path*',
+      //     headers: [
+      //       {
+      //         key: 'Cache-Control',
+      //         value: 'no-store',
+      //       },
+      //     ],
+      //   },
+      // ],
+      experimental: {
+        staleTimes: {
+          dynamic: 30,
         },
-      ],
+      },
 };
 
 export default nextConfig;
