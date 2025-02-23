@@ -7,8 +7,10 @@ import { cookies } from "next/headers";
 
 
 
-export const getDashboard = async () => {
-    
+export const getDashboard = async (req) => {
+    res.setHeader('Cache-Control', 'no-store');
+  res.setHeader('Pragma', 'no-cache');
+  res.setHeader('Expires', '0');
   try {
       const todayStart = new Date();
       todayStart.setHours(0, 0, 0, 0)
