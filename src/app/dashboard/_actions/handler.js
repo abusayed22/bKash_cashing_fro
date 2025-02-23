@@ -78,6 +78,15 @@ export const getDashboard = async () => {
           createdAt: { gte: todayStart, lte: todayEnd }, method: 'n', status: 'Received'
       })
 
+      console.log("tSend",todayTotalSend)
+      console.log("tReceived",todayTotalReceived)
+      console.log("sendBank",todayTotalSendBank)
+      console.log("receivedBank",todayTotalReceivedBank)
+      console.log("sendbKash",todayTotalSendbkash)
+      console.log("receivedbKash",todayTotalReceivedbkash)
+      console.log("sendNagad",todayTotalSendNagad)
+      console.log("receivedNagad",todayTotalReceivedNagad)
+
       return  {
               send: todayTotalSend,
               received: todayTotalReceived,
