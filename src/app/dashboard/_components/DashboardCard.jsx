@@ -10,6 +10,7 @@ import { Avatar } from "@/src/components/ui/avatar";
 const DashboardCard = (data) => {
   const { sendbKash, sendNagad, sendBank, send, receivedbKash, receivedNagad, receivedBank, received } = data?.data || {};
   // const [loading, setLoading] = useState(true);
+  console.log(data)
 
   return (
     <div>
