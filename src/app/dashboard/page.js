@@ -10,11 +10,11 @@ export async function getStaticProps() {
   return { props: { repo } }
 }
 
-const Page = async({repo}) => {
+const Page = async({ Component, pageProps }) => {
 
 
   // const dashboardData = await getDashboard();
-  console.log(repo)
+  console.log(pageProps)
   return (
     <DashboardLayout>
       <div className="container max-w-md lg:max-w-full mx-auto">
@@ -23,5 +23,18 @@ const Page = async({repo}) => {
     </DashboardLayout>
   )
 };
+
+
+Page.getInitialProps = async () => {
+  let pageProps = {};
+
+  try {
+    let data = await getDashboard();
+    pageProps["data"] = data;
+  } catch (error) {}
+
+  return { pageProps };
+};
+
 
 export default Page;
