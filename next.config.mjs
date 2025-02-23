@@ -28,6 +28,12 @@ const nextConfig = {
           dynamic: 30,
         },
       },
+
+      logging:{
+        fetches:{
+          fullUrl:true
+        }
+      }
 };
 
 export default nextConfig;
