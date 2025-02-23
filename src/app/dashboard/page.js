@@ -3,10 +3,26 @@ import DashboardLayout from "@/src/layouts/DashboardLayout";
 import DashboardCard from "./_components/DashboardCard";
 import { getDashboard } from "./_actions/handler";
 
-const Page = async(props) => {
+
+export async function getServerSideProps() {
+  const response = await fetch('https://your-vercel-url/api/dashboard');  // Call the API route where `getDashboard` is used
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch dashboard data');
+  }
+
+  const dashboardData = await response.json();
+
+  return {
+    props: { dashboardData },  // Pass data to the component
+  };
+}
 
 
-  const dashboardData = await getDashboard();
+const Page = async({dashboardData}) => {
+
+
+  // const dashboardData = await getDashboard();
   console.log(dashboardData)
   return (
     <DashboardLayout>
