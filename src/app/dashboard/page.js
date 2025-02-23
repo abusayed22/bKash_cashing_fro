@@ -5,7 +5,7 @@ import { getDashboard } from "./_actions/handler";
 
 
 export async function getServerSideProps() {
-  const response = await fetch('https://your-vercel-url/api/dashboard');  // Call the API route where `getDashboard` is used
+  const response = await getDashboard()  // Call the API route where `getDashboard` is used
 
   if (!response.ok) {
     throw new Error('Failed to fetch dashboard data');
