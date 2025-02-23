@@ -6,7 +6,7 @@ import { getDashboard } from "./_actions/handler";
 
 
 
-const Page = async({dashboardData}) => {
+const Page = async() => {
 
 
   const dashboardData = await getDashboard();
