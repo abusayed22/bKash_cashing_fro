@@ -1,26 +1,17 @@
 
 
 
-export function formatBangladeshiAmount(amount) {
-    if (amount == undefined) {
-        return 0
-    } else {
-        const amountStr = amount?.toString();
+export function formatBangladeshiAmount(value) {
+    // bangla format 
+    // const numberAmount = Number(amount)
+    // return new Intl.NumberFormat('bn-BD', {
+    //     style: 'currency',
+    //     currency: 'BDT',
+    //     minimumFractionDigits: 2,
+    // }).format(numberAmount);
 
-        // Split into integer and decimal parts
-        const [integerPart, decimalPart] = amountStr.split('.');
-
-        // Group the integer part by Bangladeshi style (first group of 3, subsequent groups of 2)
-        const firstGroup = integerPart.slice(0, integerPart.length % 3 || 3);
-        const remainingGroups = integerPart.slice(integerPart.length % 3 || 3);
-
-        // Check if remainingGroups is a valid string and match groups of two digits
-        const groupedInteger = [firstGroup, ...(remainingGroups ? remainingGroups.match(/.{2}/g) || [] : [])].join(',');
-
-        // Combine integer part with decimal part (if exists)
-        const formattedAmount = decimalPart ? `${groupedInteger}.${decimalPart}` : groupedInteger;
-
-        return `৳${formattedAmount}`;
-    }
+    // indian format 
+    if(!value) return "";
+    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",").replace(/(\d+),(\d{2})$/, "$1,$2");
 }
 
