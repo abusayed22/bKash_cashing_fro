@@ -91,7 +91,8 @@ export const getDashboard = async (req,res) => {
   //  today total Bank send amount 
   const totalSendBank = await getTotalAmount('history', {
       method: 'bank', status: 'Send'
-  })
+  });
+  console.log(totalSendBank)
 
   //  today total Bank Received amount
   const totalReceivedBank = await getTotalAmount('history', {
@@ -119,7 +120,7 @@ export const getDashboard = async (req,res) => {
     totalNagodSend:totalSendNagad,
     totalNagodReceived:totalReceivedNagad
   }
-  console.log(totalData)
+//   console.log(totalData)
 
       return  {
               send: todayTotalSend,
