@@ -4,6 +4,7 @@ import { Send, HandCoins, CreditCard } from "lucide-react";
 import Image from "next/image";
 import { Card } from "@/src/components/ui/card";
 import { Avatar } from "@/src/components/ui/avatar";
+import { formatBangladeshiAmount } from "@/src/lib/numberFormat";
 
 
 
@@ -11,7 +12,6 @@ const DashboardCard = (data) => {
   const { sendbKash, sendNagad, sendBank, send, receivedbKash, receivedNagad, receivedBank, received,totalData } = data?.data || {};
   const { totalSend,totalReceived,totalBkashSend,totalBkashReceived,totalBankSend,totalBankReceived,totalNagodSend,totalNagodReceived } = totalData || {};
   // const [loading, setLoading] = useState(true);
-  console.log(totalData)
 
   return (
     <div>
@@ -28,7 +28,7 @@ const DashboardCard = (data) => {
 
           <div className="text-right">
             <p className="text-gray-500 text-sm">Today Total Send</p>
-            <p className="text-2xl font-bold">{send} ৳</p>
+            <p className="text-2xl font-bold">{formatBangladeshiAmount(send ||0)} </p>
           </div>
         </Card>
         <Card
@@ -38,7 +38,7 @@ const DashboardCard = (data) => {
 
           <div className="text-right">
             <p className="text-gray-500 text-sm">Today Total Received</p>
-            <p className="text-2xl font-bold">{received || 0} ৳</p>
+            <p className="text-2xl font-bold">{formatBangladeshiAmount(received||0) } </p>
           </div>
         </Card>
         <Card
@@ -50,7 +50,7 @@ const DashboardCard = (data) => {
 
           <div className="text-right">
             <p className="text-gray-500 text-sm">Today Total Bank Send</p>
-            <p className="text-2xl font-bold">{sendBank || 0} ৳</p>
+            <p className="text-2xl font-bold">{formatBangladeshiAmount(sendBank|| 0)} </p>
           </div>
         </Card>
         <Card
@@ -62,7 +62,7 @@ const DashboardCard = (data) => {
 
           <div className="text-right">
             <p className="text-gray-500 text-sm">Today Total Bank Received</p>
-            <p className="text-2xl font-bold">{receivedBank || 0} ৳</p>
+            <p className="text-2xl font-bold">{formatBangladeshiAmount(receivedBank || 0) } </p>
           </div>
         </Card>
         <Card
@@ -76,7 +76,7 @@ const DashboardCard = (data) => {
 
           <div className="text-right">
             <p className="text-gray-500 text-sm">Today Total bKash Send</p>
-            <p className="text-2xl font-bold">{sendbKash || 0} ৳</p>
+            <p className="text-2xl font-bold">{formatBangladeshiAmount(sendbKash ||0)} </p>
           </div>
         </Card>
         <Card
@@ -90,7 +90,7 @@ const DashboardCard = (data) => {
 
           <div className="text-right">
             <p className="text-gray-500 text-sm">Today Total bKash Received</p>
-            <p className="text-2xl font-bold">{receivedbKash || 0} ৳</p>
+            <p className="text-2xl font-bold">{formatBangladeshiAmount(receivedbKash ||0) } </p>
           </div>
         </Card>
         <Card
@@ -104,7 +104,7 @@ const DashboardCard = (data) => {
 
           <div className="text-right">
             <p className="text-gray-500 text-sm">Today Total Nagad Send</p>
-            <p className="text-2xl font-bold">{sendNagad || 0} ৳</p>
+            <p className="text-2xl font-bold">{formatBangladeshiAmount(sendNagad ||0)} </p>
 
           </div>
         </Card>
@@ -118,7 +118,7 @@ const DashboardCard = (data) => {
           </div>
           <div className="text-right">
             <p className="text-gray-500 text-sm">Today Total Nagad Received</p>
-            <p className="text-2xl font-bold">{receivedNagad || 0} ৳</p>
+            <p className="text-2xl font-bold">{formatBangladeshiAmount(receivedNagad ||0)} </p>
           </div>
         </Card>
       </div>
@@ -132,17 +132,17 @@ const DashboardCard = (data) => {
 
           <div className="text-right">
             <p className="text-gray-500 text-sm"> Total Send</p>
-            <p className="text-2xl font-bold">{totalSend} </p>
+            <p className="text-2xl font-bold">{formatBangladeshiAmount(totalSend)} </p>
           </div>
         </Card>
         <Card
           className="flex items-center justify-between bg-lime-100 p-6 shadow-md rounded-lg transition-transform transform hover:scale-105 hover:shadow-xl"
-        >
+          >
           <div className={`p-4 rounded-lg `}>{<HandCoins size={32} />}</div>
 
           <div className="text-right">
             <p className="text-gray-500 text-sm"> Total Received</p>
-            <p className="text-2xl font-bold">{totalReceived || 0} ৳</p>
+            <p className="text-2xl font-bold">{formatBangladeshiAmount(totalReceived) || 0}</p>
           </div>
         </Card>
         <Card
@@ -154,7 +154,7 @@ const DashboardCard = (data) => {
 
           <div className="text-right">
             <p className="text-gray-500 text-sm"> Total Bank Send</p>
-            <p className="text-2xl font-bold">{totalBkashSend || 0} ৳</p>
+            <p className="text-2xl font-bold">{formatBangladeshiAmount(totalBkashSend) || 0}</p>
           </div>
         </Card>
         <Card
@@ -166,7 +166,7 @@ const DashboardCard = (data) => {
 
           <div className="text-right">
             <p className="text-gray-500 text-sm"> Total Bank Received</p>
-            <p className="text-2xl font-bold">{totalBkashReceived || 0} ৳</p>
+            <p className="text-2xl font-bold">{formatBangladeshiAmount(totalBkashReceived) || 0}</p>
           </div>
         </Card>
         <Card
@@ -180,7 +180,7 @@ const DashboardCard = (data) => {
 
           <div className="text-right">
             <p className="text-gray-500 text-sm"> Total bKash Send</p>
-            <p className="text-2xl font-bold">{totalBankSend || 0} ৳</p>
+            <p className="text-2xl font-bold">{formatBangladeshiAmount(totalBankSend) || 0}</p>
           </div>
         </Card>
         <Card
@@ -194,7 +194,7 @@ const DashboardCard = (data) => {
 
           <div className="text-right">
             <p className="text-gray-500 text-sm"> Total bKash Received</p>
-            <p className="text-2xl font-bold">{totalBankReceived || 0} ৳</p>
+            <p className="text-2xl font-bold">{formatBangladeshiAmount(totalBankReceived) || 0}</p>
           </div>
         </Card>
         <Card
@@ -208,7 +208,7 @@ const DashboardCard = (data) => {
 
           <div className="text-right">
             <p className="text-gray-500 text-sm"> Total Nagad Send</p>
-            <p className="text-2xl font-bold">{totalNagodSend || 0} ৳</p>
+            <p className="text-2xl font-bold">{formatBangladeshiAmount(totalNagodSend) || 0}</p>
 
           </div>
         </Card>
@@ -222,7 +222,7 @@ const DashboardCard = (data) => {
           </div>
           <div className="text-right">
             <p className="text-gray-500 text-sm"> Total Nagad Received</p>
-            <p className="text-2xl font-bold">{totalNagodReceived || 0} ৳</p>
+            <p className="text-2xl font-bold">{formatBangladeshiAmount(totalNagodReceived) || 0} </p>
           </div>
         </Card>
       </div>
