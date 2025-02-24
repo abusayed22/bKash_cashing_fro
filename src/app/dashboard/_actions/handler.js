@@ -25,19 +25,10 @@ export const getDashboard = async (req,res) => {
           return result._sum.amount ;  // Return 0 if result is null or undefined
         }
 
+        // today total send
         const todayTotalSend = await getTotalAmount('sendmoney',{
             createdAt: { gte: todayStart, lte: todayEnd }
         })
-
-       //  today total send 
-    //    const todayTotalSendAmount = await prisma.sendmoney.aggregate({
-    //     where:{
-    //         createdAt: { gte: todayStart, lte: todayEnd }
-    //     },
-    //     _sum:{amount:true}
-    //   })
-    //   const todayTotalSend = todayTotalSendAmount._sum.amount
-    
 
 
       //  today total Received 
@@ -77,14 +68,58 @@ export const getDashboard = async (req,res) => {
           createdAt: { gte: todayStart, lte: todayEnd }, method: 'n', status: 'Received'
       })
 
-      console.log("tSend",todayTotalSend)
-      console.log("tReceived",todayTotalReceived)
-      console.log("sendBank",todayTotalSendBank)
-      console.log("receivedBank",todayTotalReceivedBank)
-      console.log("sendbKash",todayTotalSendbkash)
-      console.log("receivedbKash",todayTotalReceivedbkash)
-      console.log("sendNagad",todayTotalSendNagad)
-      console.log("receivedNagad",todayTotalReceivedNagad)
+
+    // ---------------------------------- total calculation  ---------------------------------------
+    // today total send
+    const totalSend = await getTotalAmount('sendmoney')
+
+
+  //  today total Received 
+  const totalReceived = await getTotalAmount('receivedmoney')
+
+
+  //  today total bKash send amount TODO:
+  const totalSendbkash = await getTotalAmount('history', {
+      method: 'b', status: 'Send'
+  })
+  
+  //  today total Bank Received amount 
+  const totalReceivedbkash = await getTotalAmount('history', {
+      method: 'bank', status: 'Received'
+  })
+
+  //  today total Bank send amount 
+  const totalSendBank = await getTotalAmount('history', {
+      method: 'bank', status: 'Send'
+  })
+
+  //  today total Bank Received amount
+  const totalReceivedBank = await getTotalAmount('history', {
+     method: 'bank', status: 'Received'
+  })
+
+
+  //  today total Nagad Send amount 
+  const totalSendNagad = await getTotalAmount('history', {
+       method: 'n', status: 'Send'
+  })
+
+  //  today total Nagad Received amount
+  const totalReceivedNagad = await getTotalAmount('history', {
+      method: 'n', status: 'Received'
+  })  
+
+  const totalData = {
+    totalSend: totalSend,
+    totalReceived:totalReceived,
+    totalBkashSend:totalSendbkash,
+    totalBkashReceived: totalReceivedbkash,
+    totalBankSend:totalSendBank,
+    totalBankReceived:totalReceivedBank,
+    totalNagodSend:totalSendNagad,
+    totalNagodReceived:totalReceivedNagad
+  }
+  console.log(totalData)
 
       return  {
               send: todayTotalSend,
@@ -95,6 +130,7 @@ export const getDashboard = async (req,res) => {
               receivedbKash: todayTotalReceivedbkash,
               sendNagad: todayTotalSendNagad,
               receivedNagad: todayTotalReceivedNagad,
+              totalData:totalData
           }
   } catch (error) {
       console.log("Error fetching History:", error.message);
