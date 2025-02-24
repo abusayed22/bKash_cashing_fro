@@ -62,7 +62,7 @@ const DashboardCard = (data) => {
 
           <div className="text-right">
             <p className="text-gray-500 text-sm">Today Total Bank Received</p>
-            <p className="text-2xl font-bold">{formatBangladeshiAmount(receivedBank || 0)} </p>
+            <p className="text-2xl font-bold">{formatBangladeshiAmount(receivedBank )|| 0} </p>
           </div>
         </Card>
         <Card
@@ -76,7 +76,7 @@ const DashboardCard = (data) => {
 
           <div className="text-right">
             <p className="text-gray-500 text-sm">Today Total bKash Send</p>
-            <p className="text-2xl font-bold">{formatBangladeshiAmount(sendbKash || 0)} </p>
+            <p className="text-2xl font-bold">{formatBangladeshiAmount(sendbKash )|| 0} </p>
           </div>
         </Card>
         <Card

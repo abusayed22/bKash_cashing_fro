@@ -11,7 +11,7 @@ export function formatBangladeshiAmount(value) {
     // }).format(numberAmount);
 
     // indian format 
-    if(!value) return "";
+    if(!value) return 0;
     return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",").replace(/(\d+),(\d{2})$/, "$1,$2");
 }
 
