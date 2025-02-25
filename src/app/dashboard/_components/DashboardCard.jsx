@@ -9,8 +9,8 @@ import { formatBangladeshiAmount } from "@/src/lib/numberFormat";
 
 
 const DashboardCard = (data) => {
-  const { sendbKash, sendNagad, sendBank, send, receivedbKash, receivedNagad, receivedBank, received, totalData } = data?.data || {};
-  const { totalSend, totalReceived, totalBkashSend, totalBkashReceived, totalBankSend, totalBankReceived, totalNagodSend, totalNagodReceived } = totalData || {};
+  const { sendbKash, sendNagad, sendBank, send, receivedbKash, receivedNagad, receivedBank, received, totalData,  totalSend, totalReceived, totalBkashSend, totalBkashReceived, totalBankSend, totalBankReceived, totalNagodSend, totalNagodReceived } = data?.data || {};
+  // const { totalSend, totalReceived, totalBkashSend, totalBkashReceived, totalBankSend, totalBankReceived, totalNagodSend, totalNagodReceived } = totalData || {};
   // const [loading, setLoading] = useState(true);
 
   return (
